@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils</PackageId>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils</PackageDescription>
@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../LICENSE" Pack="true" PackagePath=""/>
+        <None Include="LICENSE" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
