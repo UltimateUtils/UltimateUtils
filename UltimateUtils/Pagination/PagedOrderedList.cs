@@ -4,6 +4,14 @@ namespace UltimateUtils.Pagination;
 
 public class PagedOrderedList<T, TKey> : PagedListBase<T>
 {
+    private PagedOrderedList(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount)
+        : base(pageNumber, pageSize, totalItemCount)
+    {
+    }
+
     internal PagedOrderedList(
         IQueryable<T> sourceItems,
         int pageNumber,
@@ -45,10 +53,34 @@ public class PagedOrderedList<T, TKey> : PagedListBase<T>
             descending)
     {
     }
+
+    public static IPagedList<T> Create(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount,
+        List<T> currentItems)
+    {
+        var pagedList = new PagedOrderedList<T, TKey>(pageNumber, pageSize, totalItemCount);
+
+        if (totalItemCount > 0)
+        {
+            pagedList.CurrentPageItems.AddRange(currentItems);
+        }
+
+        return pagedList;
+    }
 }
 
 public class PagedOrderedList<TSource, TKey, TResult> : PagedListBase<TResult>
 {
+    private PagedOrderedList(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount)
+        : base(pageNumber, pageSize, totalItemCount)
+    {
+    }
+
     internal PagedOrderedList(
         IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -92,5 +124,21 @@ public class PagedOrderedList<TSource, TKey, TResult> : PagedListBase<TResult>
             descending,
             converter)
     {
+    }
+
+    public static IPagedList<TResult> Create(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount,
+        IEnumerable<TResult> currentItems)
+    {
+        var pagedList = new PagedOrderedList<TSource, TKey, TResult>(pageNumber, pageSize, totalItemCount);
+
+        if (totalItemCount > 0)
+        {
+            pagedList.CurrentPageItems.AddRange(currentItems);
+        }
+
+        return pagedList;
     }
 }

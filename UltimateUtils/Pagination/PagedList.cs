@@ -2,6 +2,14 @@ namespace UltimateUtils.Pagination;
 
 public class PagedList<T> : PagedListBase<T>
 {
+    private PagedList(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount)
+        : base(pageNumber, pageSize, totalItemCount)
+    {
+    }
+
     internal PagedList(
         IQueryable<T> sourceItems,
         int pageNumber,
@@ -30,10 +38,34 @@ public class PagedList<T> : PagedListBase<T>
             pageSize)
     {
     }
+
+    public static IPagedList<T> Create(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount,
+        List<T> currentItems)
+    {
+        var pagedList = new PagedList<T>(pageNumber, pageSize, totalItemCount);
+
+        if (totalItemCount > 0)
+        {
+            pagedList.CurrentPageItems.AddRange(currentItems);
+        }
+
+        return pagedList;
+    }
 }
 
 public class PagedList<TSource, TResult> : PagedListBase<TResult>
 {
+    private PagedList(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount)
+        : base(pageNumber, pageSize, totalItemCount)
+    {
+    }
+
     internal PagedList(
         IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -64,5 +96,21 @@ public class PagedList<TSource, TResult> : PagedListBase<TResult>
             pageSize,
             converter)
     {
+    }
+
+    public static IPagedList<TResult> Create(
+        int pageNumber,
+        int pageSize,
+        int totalItemCount,
+        IEnumerable<TResult> currentItems)
+    {
+        var pagedList = new PagedList<TSource, TResult>(pageNumber, pageSize, totalItemCount);
+
+        if (totalItemCount > 0)
+        {
+            pagedList.CurrentPageItems.AddRange(currentItems);
+        }
+
+        return pagedList;
     }
 }
