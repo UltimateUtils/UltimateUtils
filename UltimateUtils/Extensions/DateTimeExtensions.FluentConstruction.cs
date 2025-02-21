@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static class DateTimeExtensions
+public static partial class DateTimeExtensions
 {
     public static DateTime January(this int year, int day)
     {
