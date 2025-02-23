@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static partial class DateAndTimeConverters
+public static class DateAndTimeConverters
 {
     #region Datetime
 
