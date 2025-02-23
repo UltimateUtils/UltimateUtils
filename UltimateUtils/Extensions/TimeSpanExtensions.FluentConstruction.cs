@@ -2,23 +2,39 @@ namespace UltimateUtils.Extensions;
 
 public static class TimeSpanExtensions
 {
-    public static TimeSpan Days(this int days, TimeSpan addition = default)
+    public static TimeSpan Days(this int days, params TimeSpan[] addition)
     {
-        return TimeSpan.FromDays(days) + addition;
+        return
+            addition
+                .Aggregate(
+                    TimeSpan.FromDays(days),
+                    (current, time) => current + time);
     }
 
-    public static TimeSpan Hours(this int hours, TimeSpan addition = default)
+    public static TimeSpan Hours(this int hours, params TimeSpan[] addition)
     {
-        return TimeSpan.FromHours(hours) + addition;
+        return
+            addition
+                .Aggregate(
+                    TimeSpan.FromHours(hours),
+                    (current, time) => current + time);
     }
 
-    public static TimeSpan Minutes(this int minutes, TimeSpan addition = default)
+    public static TimeSpan Minutes(this int minutes, params TimeSpan[] addition)
     {
-        return TimeSpan.FromMinutes(minutes) + addition;
+        return
+            addition
+                .Aggregate(
+                    TimeSpan.FromMinutes(minutes),
+                    (current, time) => current + time);
     }
 
-    public static TimeSpan Seconds(this int seconds, TimeSpan addition = default)
+    public static TimeSpan Seconds(this int seconds, params TimeSpan[] addition)
     {
-        return TimeSpan.FromSeconds(seconds) + addition;
+        return
+            addition
+                .Aggregate(
+                    TimeSpan.FromSeconds(seconds),
+                    (current, time) => current + time);
     }
 }
