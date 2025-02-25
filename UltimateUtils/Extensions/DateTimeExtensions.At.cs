@@ -7,7 +7,16 @@ public static partial class DateTimeExtensions
         return new DateTime(dateTime.ToDateOnly(), timeOnly);
     }
 
-    public static DateTime At(this DateTime dateTime, int hour, int minute, int second)
+    public static DateTime At(this DateTime dateTime, TimeOnly timeOnly, DateTimeKind kind)
+    {
+        return new DateTime(dateTime.ToDateOnly(), timeOnly, kind);
+    }
+
+    public static DateTime At(
+        this DateTime dateTime,
+        int hour,
+        int minute,
+        int second)
     {
         return new DateTime(
             dateTime.Year,
@@ -16,6 +25,23 @@ public static partial class DateTimeExtensions
             hour,
             minute,
             second);
+    }
+
+    public static DateTime At(
+        this DateTime dateTime,
+        int hour,
+        int minute,
+        int second,
+        DateTimeKind kind)
+    {
+        return new DateTime(
+            dateTime.Year,
+            dateTime.Month,
+            dateTime.Day,
+            hour,
+            minute,
+            second,
+            kind);
     }
 
     public static DateTime At(
@@ -41,6 +67,25 @@ public static partial class DateTimeExtensions
         int minute,
         int second,
         int millisecond,
+        DateTimeKind kind)
+    {
+        return new DateTime(
+            dateTime.Year,
+            dateTime.Month,
+            dateTime.Day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            kind);
+    }
+
+    public static DateTime At(
+        this DateTime dateTime,
+        int hour,
+        int minute,
+        int second,
+        int millisecond,
         int microsecond)
     {
         return new DateTime(
@@ -52,5 +97,26 @@ public static partial class DateTimeExtensions
             second,
             millisecond,
             microsecond);
+    }
+
+    public static DateTime At(
+        this DateTime dateTime,
+        int hour,
+        int minute,
+        int second,
+        int millisecond,
+        int microsecond,
+        DateTimeKind kind)
+    {
+        return new DateTime(
+            dateTime.Year,
+            dateTime.Month,
+            dateTime.Day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            microsecond,
+            kind);
     }
 }
