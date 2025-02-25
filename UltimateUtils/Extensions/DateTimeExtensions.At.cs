@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace UltimateUtils.Extensions;
 
 public static partial class DateTimeExtensions
