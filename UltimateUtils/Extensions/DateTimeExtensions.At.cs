@@ -2,42 +2,42 @@ namespace UltimateUtils.Extensions;
 
 public static partial class DateTimeExtensions
 {
-    public static DateTime At(this DateTime dateTime, TimeOnly timeOnly)
+    public static DateTime At(this DateTime date, TimeOnly time)
     {
-        return new DateTime(dateTime.ToDateOnly(), timeOnly);
+        return new DateTime(date.ToDateOnly(), time);
     }
 
-    public static DateTime At(this DateTime dateTime, TimeOnly timeOnly, DateTimeKind kind)
+    public static DateTime At(this DateTime date, TimeOnly time, DateTimeKind kind)
     {
-        return new DateTime(dateTime.ToDateOnly(), timeOnly, kind);
+        return new DateTime(date.ToDateOnly(), time, kind);
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second);
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second,
         DateTimeKind kind)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second,
@@ -45,16 +45,16 @@ public static partial class DateTimeExtensions
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second,
         int millisecond)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second,
@@ -62,7 +62,7 @@ public static partial class DateTimeExtensions
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second,
@@ -70,9 +70,9 @@ public static partial class DateTimeExtensions
         DateTimeKind kind)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second,
@@ -81,7 +81,7 @@ public static partial class DateTimeExtensions
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second,
@@ -89,9 +89,9 @@ public static partial class DateTimeExtensions
         int microsecond)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second,
@@ -100,7 +100,7 @@ public static partial class DateTimeExtensions
     }
 
     public static DateTime At(
-        this DateTime dateTime,
+        this DateTime date,
         int hour,
         int minute,
         int second,
@@ -109,9 +109,9 @@ public static partial class DateTimeExtensions
         DateTimeKind kind)
     {
         return new DateTime(
-            dateTime.Year,
-            dateTime.Month,
-            dateTime.Day,
+            date.Year,
+            date.Month,
+            date.Day,
             hour,
             minute,
             second,
