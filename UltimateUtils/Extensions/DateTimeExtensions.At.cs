@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace UltimateUtils.Extensions;
 
 public static partial class DateTimeExtensions
@@ -7,9 +9,30 @@ public static partial class DateTimeExtensions
         return new DateTime(date.ToDateOnly(), time);
     }
 
-    public static DateTime At(this DateTime date, TimeOnly time, DateTimeKind kind)
+    public static DateTime At(
+        this DateTime date,
+        TimeOnly time,
+        Calendar calendar)
     {
-        return new DateTime(date.ToDateOnly(), time, kind);
+        return new DateTime(
+            date.Year,
+            date.Month,
+            date.Day,
+            time.Hour,
+            time.Minute,
+            time.Second,
+            calendar);
+    }
+
+    public static DateTime At(
+        this DateTime date,
+        TimeOnly time,
+        DateTimeKind kind)
+    {
+        return new DateTime(
+            date.ToDateOnly(),
+            time,
+            kind);
     }
 
     public static DateTime At(
@@ -25,6 +48,23 @@ public static partial class DateTimeExtensions
             hour,
             minute,
             second);
+    }
+
+    public static DateTime At(
+        this DateTime date,
+        int hour,
+        int minute,
+        int second,
+        Calendar calendar)
+    {
+        return new DateTime(
+            date.Year,
+            date.Month,
+            date.Day,
+            hour,
+            minute,
+            second,
+            calendar);
     }
 
     public static DateTime At(
@@ -67,6 +107,25 @@ public static partial class DateTimeExtensions
         int minute,
         int second,
         int millisecond,
+        Calendar calendar)
+    {
+        return new DateTime(
+            date.Year,
+            date.Month,
+            date.Day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            calendar);
+    }
+
+    public static DateTime At(
+        this DateTime date,
+        int hour,
+        int minute,
+        int second,
+        int millisecond,
         DateTimeKind kind)
     {
         return new DateTime(
@@ -97,6 +156,27 @@ public static partial class DateTimeExtensions
             second,
             millisecond,
             microsecond);
+    }
+
+    public static DateTime At(
+        this DateTime date,
+        int hour,
+        int minute,
+        int second,
+        int millisecond,
+        int microsecond,
+        Calendar calendar)
+    {
+        return new DateTime(
+            date.Year,
+            date.Month,
+            date.Day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            microsecond,
+            calendar);
     }
 
     public static DateTime At(
