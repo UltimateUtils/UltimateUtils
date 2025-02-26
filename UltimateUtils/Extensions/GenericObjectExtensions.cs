@@ -2,15 +2,17 @@ namespace UltimateUtils.Extensions;
 
 public static class GenericObjectExtensions
 {
-    public static void EnsureNotNull<T>(this T? obj, string? paramName = null)
+    public static void EnsureNotNull<T>(this T? argument, string? paramName = null)
         where T : class
     {
-        ArgumentNullException.ThrowIfNull(obj, paramName);
+        ArgumentNullException.ThrowIfNull(argument, paramName);
     }
 
-    public static T EnsuringNotNull<T>(this T? obj, string? paramName = null)
+    public static T EnsuringNotNull<T>(this T? argument, string? paramName = null)
         where T : class
     {
-        return obj ?? throw new ArgumentNullException(paramName ?? nameof(obj));
+        ArgumentNullException.ThrowIfNull(argument, paramName);
+
+        return argument;
     }
 }
