@@ -2,28 +2,28 @@ namespace UltimateUtils.Extensions;
 
 public static class EnumExtensions
 {
-    public static T ToEnum<T>(this string input, bool ignoreCase = false)
-        where T : struct, Enum
+    public static TEnum ToEnum<TEnum>(this string input, bool ignoreCase = false)
+        where TEnum : struct, Enum
     {
-        if (Enum.TryParse(input, ignoreCase, out T result))
+        if (Enum.TryParse(input, ignoreCase, out TEnum result))
         {
             return result;
         }
 
-        throw new ArgumentException($"Cannot convert {input} to a value of the {typeof(T).FullName} enumeration.");
+        throw new ArgumentException($"Cannot convert {input} to a value of the {typeof(TEnum).FullName} enumeration.");
     }
 
-    public static TResult ConvertEnum<TInput, TResult>(this TInput input)
-        where TInput : struct, Enum
-        where TResult : struct, Enum
+    public static TEnumTo ConvertEnum<TEnumFrom, TEnumTo>(this TEnumFrom input)
+        where TEnumFrom : struct, Enum
+        where TEnumTo : struct, Enum
     {
-        return input.ToString().ToEnum<TResult>();
+        return input.ToString().ToEnum<TEnumTo>();
     }
 
-    public static TResult? ConvertEnum<TInput, TResult>(this TInput? input)
-        where TInput : struct, Enum
-        where TResult : struct, Enum
+    public static TEnumTo? ConvertEnum<TEnumFrom, TEnumTo>(this TEnumFrom? input)
+        where TEnumFrom : struct, Enum
+        where TEnumTo : struct, Enum
     {
-        return input?.ToString().ToEnum<TResult>();
+        return input?.ToString().ToEnum<TEnumTo>();
     }
 }
