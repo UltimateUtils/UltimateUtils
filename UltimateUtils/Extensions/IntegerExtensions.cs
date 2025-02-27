@@ -52,4 +52,39 @@ public static class IntegerExtensions
 
         return true;
     }
+
+    public static int ParseToInt(this string number)
+    {
+        return int.Parse(number);
+    }
+
+    public static int ParseToInt(this char number)
+    {
+        return int.Parse(number.ToString());
+    }
+
+    public static string ToBinaryString(this int number)
+    {
+        return Convert.ToString(number, 2);
+    }
+
+    public static string ToOctalString(this int number)
+    {
+        return Convert.ToString(number, 8);
+    }
+
+    public static string ToHexString(this int number)
+    {
+        return Convert.ToString(number, 16);
+    }
+
+    public static bool IsInRangeExclusively(this int number, int left, int right)
+    {
+        return left < number && number < right;
+    }
+
+    public static bool IsInRangeInclusively(this int number, int left, int right)
+    {
+        return left <= number && number <= right;
+    }
 }
