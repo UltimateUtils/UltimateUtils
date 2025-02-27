@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static class FloatExtensions
+public static partial class FloatExtensions
 {
     public static bool IsFinite(this float number)
     {
@@ -35,11 +35,6 @@ public static class FloatExtensions
     public static bool IsPositiveInfinity(this float number)
     {
         return float.IsPositiveInfinity(number);
-    }
-
-    public static float ParseToFloat(this string number)
-    {
-        return float.Parse(number);
     }
 
     public static bool IsPowerOfTwo(this float number)
