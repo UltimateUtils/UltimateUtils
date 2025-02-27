@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace UltimateUtils.Extensions;
 
 public static class FloatExtensions
