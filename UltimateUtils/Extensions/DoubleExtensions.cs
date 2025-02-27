@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static class DoubleExtensions
+public static partial class DoubleExtensions
 {
     public static bool IsFinite(this double number)
     {
@@ -37,11 +37,6 @@ public static class DoubleExtensions
         return double.IsPositiveInfinity(number);
     }
 
-    public static double ParseToDouble(this string number)
-    {
-        return double.Parse(number);
-    }
-
     public static bool IsPowerOfTwo(this double number)
     {
         return double.IsPow2(number);
@@ -75,5 +70,20 @@ public static class DoubleExtensions
     public static double Sqrt(this double number)
     {
         return Math.Sqrt(number);
+    }
+
+    public static double Abs(this double number)
+    {
+        return Math.Abs(number);
+    }
+
+    public static double Ceiling(this double number)
+    {
+        return Math.Ceiling(number);
+    }
+
+    public static double Floor(this double number)
+    {
+        return Math.Floor(number);
     }
 }
