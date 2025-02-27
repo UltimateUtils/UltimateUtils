@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static class DecimalExtensions
+public static partial class DecimalExtensions
 {
     public static bool IsNegative(this decimal number)
     {
