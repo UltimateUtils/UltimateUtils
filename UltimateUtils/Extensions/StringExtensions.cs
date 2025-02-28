@@ -1,6 +1,6 @@
 namespace UltimateUtils.Extensions;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
     public static bool IsNullOrEmpty(this string arg)
     {
