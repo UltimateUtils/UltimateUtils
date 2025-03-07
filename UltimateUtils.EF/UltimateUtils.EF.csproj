@@ -10,6 +10,7 @@
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils for EF Core</PackageDescription>
         <RepositoryUrl>https://github.com/UltimateUtils/UltimateUtils</RepositoryUrl>
+        <PackageTags>utility utilities ultimateutils extensions helpers convertors conversion pagination paging pagedlist paginatedlist entity framework ef</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
