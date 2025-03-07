@@ -5,11 +5,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils</PackageId>
-        <Version>1.4.21</Version>
+        <Version>1.4.22</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils</PackageDescription>
         <RepositoryUrl>https://github.com/UltimateUtils/UltimateUtils</RepositoryUrl>
+        <PackageTags>utility utilities ultimateutils extensions helpers convertors conversion pagination paging pagedlist paginatedlist</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
