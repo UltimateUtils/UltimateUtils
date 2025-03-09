@@ -62,14 +62,14 @@ public static class PaginationHelper
         this IQueryable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending)
     {
         return new PagedOrderedList<T, TKey>(
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending);
     }
 
@@ -77,14 +77,14 @@ public static class PaginationHelper
         this IEnumerable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending)
     {
         return new PagedOrderedList<T, TKey>(
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending);
     }
 
@@ -92,7 +92,7 @@ public static class PaginationHelper
         this IQueryable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
     {
@@ -100,7 +100,7 @@ public static class PaginationHelper
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending,
             converter);
     }
@@ -109,7 +109,7 @@ public static class PaginationHelper
         this IEnumerable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
     {
@@ -117,7 +117,75 @@ public static class PaginationHelper
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
+            descending,
+            converter);
+    }
+
+    #endregion
+
+    #region Paginate 2 -> PagedOrderedList
+
+    public static IPagedList<T> Paginate<T, TKey>(
+        this IQueryable<T> sourceItems,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize)
+    {
+        return new PagedOrderedList<T, TKey>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending);
+    }
+
+    public static IPagedList<T> Paginate<T, TKey>(
+        this IEnumerable<T> sourceItems,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize)
+    {
+        return new PagedOrderedList<T, TKey>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending);
+    }
+
+    public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
+        this IQueryable<TSource> sourceItems,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize,
+        Func<TSource, TResult> converter)
+    {
+        return new PagedOrderedList<TSource, TKey, TResult>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending,
+            converter);
+    }
+
+    public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
+        this IEnumerable<TSource> sourceItems,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize,
+        Func<TSource, TResult> converter)
+    {
+        return new PagedOrderedList<TSource, TKey, TResult>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
             descending,
             converter);
     }
