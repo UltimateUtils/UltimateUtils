@@ -1,4 +1,5 @@
 using System.Collections;
+using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 

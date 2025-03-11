@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using UltimateUtils.Abstraction.Pagination;
 using UltimateUtils.Pagination;
 
 namespace UltimateUtils.EF.Pagination;

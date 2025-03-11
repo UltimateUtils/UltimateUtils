@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 

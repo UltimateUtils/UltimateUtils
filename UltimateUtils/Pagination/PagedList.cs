@@ -1,3 +1,5 @@
+using UltimateUtils.Abstraction.Pagination;
+
 namespace UltimateUtils.Pagination;
 
 public class PagedList<T> : PagedListBase<T>

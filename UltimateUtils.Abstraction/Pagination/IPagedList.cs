@@ -1,4 +1,4 @@
-namespace UltimateUtils.Pagination;
+namespace UltimateUtils.Abstraction.Pagination;
 
 public interface IPagedList<out T> : IReadOnlyList<T>
 {
