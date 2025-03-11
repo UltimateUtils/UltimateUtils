@@ -125,6 +125,74 @@ public static class PaginationHelper
 
     #endregion
 
+    #region Paginate 2 -> PagedOrderedList
+
+    public static IPagedList<T> Paginate<T, TKey>(
+        this IQueryable<T> sourceItems,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize)
+    {
+        return new PagedOrderedList<T, TKey>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending);
+    }
+
+    public static IPagedList<T> Paginate<T, TKey>(
+        this IEnumerable<T> sourceItems,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize)
+    {
+        return new PagedOrderedList<T, TKey>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending);
+    }
+
+    public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
+        this IQueryable<TSource> sourceItems,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize,
+        Func<TSource, TResult> converter)
+    {
+        return new PagedOrderedList<TSource, TKey, TResult>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending,
+            converter);
+    }
+
+    public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
+        this IEnumerable<TSource> sourceItems,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
+        bool descending,
+        int pageNumber,
+        int pageSize,
+        Func<TSource, TResult> converter)
+    {
+        return new PagedOrderedList<TSource, TKey, TResult>(
+            sourceItems,
+            pageNumber,
+            pageSize,
+            orderByKeySelectorExpression,
+            descending,
+            converter);
+    }
+
+    #endregion
+
     #region Wrap
 
     public static PagedListWrapper<T> Wrap<T>(this IPagedList<T> pagedList)
