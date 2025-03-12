@@ -2,22 +2,22 @@ namespace UltimateUtils.Extensions;
 
 public static partial class StringExtensions
 {
-    public static bool IsNullOrEmpty(this string arg)
+    public static bool IsNullOrEmpty(this string? arg)
     {
         return string.IsNullOrEmpty(arg);
     }
 
-    public static bool IsNullOrWhiteSpace(this string arg)
+    public static bool IsNullOrWhiteSpace(this string? arg)
     {
         return string.IsNullOrWhiteSpace(arg);
     }
 
-    public static bool IsNotNullOrEmpty(this string arg)
+    public static bool IsNotNullOrEmpty(this string? arg)
     {
         return !string.IsNullOrEmpty(arg);
     }
 
-    public static bool IsNotNullOrWhiteSpace(this string arg)
+    public static bool IsNotNullOrWhiteSpace(this string? arg)
     {
         return !string.IsNullOrWhiteSpace(arg);
     }
