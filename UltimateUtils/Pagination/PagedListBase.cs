@@ -5,7 +5,7 @@ namespace UltimateUtils.Pagination;
 
 public abstract class PagedListBase<T> : IPagedList<T>
 {
-    protected readonly List<T> CurrentPageItems = new();
+    protected readonly List<T> CurrentPageItems = [];
 
     protected internal PagedListBase(
         int pageNumber,
