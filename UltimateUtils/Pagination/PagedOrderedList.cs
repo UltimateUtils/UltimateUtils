@@ -17,7 +17,7 @@ public class PagedOrderedList<T, TKey> : PagedListBase<T>
         IQueryable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending = false)
         : base(pageNumber, pageSize, sourceItems.Count())
     {
@@ -26,12 +26,12 @@ public class PagedOrderedList<T, TKey> : PagedListBase<T>
             var items =
                 descending
                     ? sourceItems
-                        .OrderByDescending(keySelectorExpression)
+                        .OrderByDescending(orderByKeySelectorExpression)
                         .Skip((pageNumber - 1) * pageSize)
                         .Take(pageSize)
                         .AsEnumerable()
                     : sourceItems
-                        .OrderBy(keySelectorExpression)
+                        .OrderBy(orderByKeySelectorExpression)
                         .Skip((pageNumber - 1) * pageSize)
                         .Take(pageSize)
                         .AsEnumerable();
@@ -44,13 +44,13 @@ public class PagedOrderedList<T, TKey> : PagedListBase<T>
         IEnumerable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending = false)
         : this(
             sourceItems.AsQueryable(),
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending)
     {
     }
@@ -86,7 +86,7 @@ public class PagedOrderedList<TSource, TKey, TResult> : PagedListBase<TResult>
         IQueryable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
         : base(pageNumber, pageSize, sourceItems.Count())
@@ -96,12 +96,12 @@ public class PagedOrderedList<TSource, TKey, TResult> : PagedListBase<TResult>
             var items =
                 descending
                     ? sourceItems
-                        .OrderByDescending(keySelectorExpression)
+                        .OrderByDescending(orderByKeySelectorExpression)
                         .Skip((pageNumber - 1) * pageSize)
                         .Take(pageSize)
                         .AsEnumerable()
                     : sourceItems
-                        .OrderBy(keySelectorExpression)
+                        .OrderBy(orderByKeySelectorExpression)
                         .Skip((pageNumber - 1) * pageSize)
                         .Take(pageSize)
                         .AsEnumerable();
@@ -114,14 +114,14 @@ public class PagedOrderedList<TSource, TKey, TResult> : PagedListBase<TResult>
         IEnumerable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
         : this(
             sourceItems.AsQueryable(),
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending,
             converter)
     {

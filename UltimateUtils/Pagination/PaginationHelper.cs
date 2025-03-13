@@ -63,14 +63,14 @@ public static class PaginationHelper
         this IQueryable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending)
     {
         return new PagedOrderedList<T, TKey>(
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending);
     }
 
@@ -78,14 +78,14 @@ public static class PaginationHelper
         this IEnumerable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending)
     {
         return new PagedOrderedList<T, TKey>(
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending);
     }
 
@@ -93,7 +93,7 @@ public static class PaginationHelper
         this IQueryable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
     {
@@ -101,7 +101,7 @@ public static class PaginationHelper
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending,
             converter);
     }
@@ -110,7 +110,7 @@ public static class PaginationHelper
         this IEnumerable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter)
     {
@@ -118,7 +118,7 @@ public static class PaginationHelper
             sourceItems,
             pageNumber,
             pageSize,
-            keySelectorExpression,
+            orderByKeySelectorExpression,
             descending,
             converter);
     }
