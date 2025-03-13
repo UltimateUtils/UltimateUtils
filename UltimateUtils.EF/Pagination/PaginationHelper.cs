@@ -80,7 +80,7 @@ public static class PaginationHelper
         this IQueryable<T> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<T, TKey>> keySelectorExpression,
+        Expression<Func<T, TKey>> orderByKeySelectorExpression,
         bool descending,
         CancellationToken cancellationToken = default)
     {
@@ -98,13 +98,13 @@ public static class PaginationHelper
         var currentItems =
             descending
                 ? await sourceItems
-                    .OrderByDescending(keySelectorExpression)
+                    .OrderByDescending(orderByKeySelectorExpression)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync(cancellationToken)
                     .ConfigureAwait(false)
                 : await sourceItems
-                    .OrderBy(keySelectorExpression)
+                    .OrderBy(orderByKeySelectorExpression)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync(cancellationToken)
@@ -121,7 +121,7 @@ public static class PaginationHelper
         this IQueryable<TSource> sourceItems,
         int pageNumber,
         int pageSize,
-        Expression<Func<TSource, TKey>> keySelectorExpression,
+        Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
         bool descending,
         Func<TSource, TResult> converter,
         CancellationToken cancellationToken = default)
@@ -140,13 +140,13 @@ public static class PaginationHelper
         var currentItems =
             descending
                 ? await sourceItems
-                    .OrderByDescending(keySelectorExpression)
+                    .OrderByDescending(orderByKeySelectorExpression)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync(cancellationToken)
                     .ConfigureAwait(false)
                 : await sourceItems
-                    .OrderBy(keySelectorExpression)
+                    .OrderBy(orderByKeySelectorExpression)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync(cancellationToken)
