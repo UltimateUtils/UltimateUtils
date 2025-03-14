@@ -7,29 +7,37 @@ public static class ResponseHeaderHelper
 {
     public static IPagedList<T> SettingPaginationHeaders<T>(
         this IPagedList<T> pagedList,
-        IHeaderDictionary responseHeaders)
+        IHeaderDictionary responseHeaders,
+        Action<HeaderOptions>? action = null)
     {
-        responseHeaders.Append(Constants.XCurrentCount, pagedList.Count.ToString());
-        responseHeaders.Append(Constants.XTotalCount, pagedList.TotalItemCount.ToString());
-        responseHeaders.Append(Constants.XTotalPages, pagedList.TotalPageCount.ToString());
-        responseHeaders.Append(Constants.XPageNumber, pagedList.PageNumber.ToString());
-        responseHeaders.Append(Constants.XPageSize, pagedList.PageSize.ToString());
-        responseHeaders.Append(Constants.XHasPreviousPage, pagedList.HasPreviousPage.ToString());
-        responseHeaders.Append(Constants.XHasNextPage, pagedList.HasNextPage.ToString());
+        var headerOptions = new HeaderOptions();
+        action?.Invoke(headerOptions);
+
+        responseHeaders.Append(headerOptions.XCurrentCount, pagedList.Count.ToString());
+        responseHeaders.Append(headerOptions.XTotalCount, pagedList.TotalItemCount.ToString());
+        responseHeaders.Append(headerOptions.XTotalPages, pagedList.TotalPageCount.ToString());
+        responseHeaders.Append(headerOptions.XPageNumber, pagedList.PageNumber.ToString());
+        responseHeaders.Append(headerOptions.XPageSize, pagedList.PageSize.ToString());
+        responseHeaders.Append(headerOptions.XHasPreviousPage, pagedList.HasPreviousPage.ToString());
+        responseHeaders.Append(headerOptions.XHasNextPage, pagedList.HasNextPage.ToString());
 
         return pagedList;
     }
 
     public static void SetPaginationHeaders<T>(
         this IHeaderDictionary responseHeaders,
-        IPagedList<T> pagedList)
+        IPagedList<T> pagedList,
+        Action<HeaderOptions>? action = null)
     {
-        responseHeaders.Append(Constants.XCurrentCount, pagedList.Count.ToString());
-        responseHeaders.Append(Constants.XTotalCount, pagedList.TotalItemCount.ToString());
-        responseHeaders.Append(Constants.XTotalPages, pagedList.TotalPageCount.ToString());
-        responseHeaders.Append(Constants.XPageNumber, pagedList.PageNumber.ToString());
-        responseHeaders.Append(Constants.XPageSize, pagedList.PageSize.ToString());
-        responseHeaders.Append(Constants.XHasPreviousPage, pagedList.HasPreviousPage.ToString());
-        responseHeaders.Append(Constants.XHasNextPage, pagedList.HasNextPage.ToString());
+        var headerOptions = new HeaderOptions();
+        action?.Invoke(headerOptions);
+
+        responseHeaders.Append(headerOptions.XCurrentCount, pagedList.Count.ToString());
+        responseHeaders.Append(headerOptions.XTotalCount, pagedList.TotalItemCount.ToString());
+        responseHeaders.Append(headerOptions.XTotalPages, pagedList.TotalPageCount.ToString());
+        responseHeaders.Append(headerOptions.XPageNumber, pagedList.PageNumber.ToString());
+        responseHeaders.Append(headerOptions.XPageSize, pagedList.PageSize.ToString());
+        responseHeaders.Append(headerOptions.XHasPreviousPage, pagedList.HasPreviousPage.ToString());
+        responseHeaders.Append(headerOptions.XHasNextPage, pagedList.HasNextPage.ToString());
     }
 }
