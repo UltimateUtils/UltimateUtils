@@ -210,4 +210,19 @@ public static class PaginationHelper
     }
 
     #endregion
+
+    #region Convert
+
+    public static IPagedList<TResult> Convert<TSource, TResult>(
+        this IPagedList<TSource> pagedList,
+        Func<TSource, TResult> converter)
+    {
+        return PagedList<TResult>.Create(
+            pagedList.PageNumber,
+            pagedList.PageSize,
+            pagedList.TotalItemCount,
+            pagedList.Select(converter));
+    }
+
+    #endregion Clone
 }

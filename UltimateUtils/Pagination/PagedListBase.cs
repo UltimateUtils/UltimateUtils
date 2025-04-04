@@ -27,9 +27,9 @@ public abstract class PagedListBase<T> : IPagedList<T>
             throw new ArgumentOutOfRangeException(nameof(totalItemCount), totalItemCount, "TotalItemCount cannot be less than 0.");
         }
 
-        TotalItemCount = totalItemCount;
-        PageSize = pageSize;
         PageNumber = pageNumber;
+        PageSize = pageSize;
+        TotalItemCount = totalItemCount;
 
         TotalPageCount =
             TotalItemCount > 0
@@ -39,16 +39,6 @@ public abstract class PagedListBase<T> : IPagedList<T>
         bool isPageNumberGood = TotalPageCount > 0 && PageNumber <= TotalPageCount;
         HasPreviousPage = isPageNumberGood && PageNumber > 1;
         HasNextPage = isPageNumberGood && PageNumber < TotalPageCount;
-    }
-
-    public IEnumerator<T> GetEnumerator()
-    {
-        return CurrentPageItems.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 
     public int Count => CurrentPageItems.Count;
@@ -66,4 +56,14 @@ public abstract class PagedListBase<T> : IPagedList<T>
     public bool HasPreviousPage { get; }
 
     public bool HasNextPage { get; }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return CurrentPageItems.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }

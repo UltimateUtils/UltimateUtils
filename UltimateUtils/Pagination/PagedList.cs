@@ -45,7 +45,7 @@ public class PagedList<T> : PagedListBase<T>
         int pageNumber,
         int pageSize,
         int totalItemCount,
-        List<T> currentItems)
+        IEnumerable<T> currentItems)
     {
         var pagedList = new PagedList<T>(pageNumber, pageSize, totalItemCount);
 

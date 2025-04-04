@@ -59,7 +59,7 @@ public class PagedOrderedList<T, TKey> : PagedListBase<T>
         int pageNumber,
         int pageSize,
         int totalItemCount,
-        List<T> currentItems)
+        IEnumerable<T> currentItems)
     {
         var pagedList = new PagedOrderedList<T, TKey>(pageNumber, pageSize, totalItemCount);
 
