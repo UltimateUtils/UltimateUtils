@@ -46,6 +46,14 @@ enumerable.Paginate(orderByKeySelectorExpression, descending, pageNumber, PageSi
 
 They work almost the same as `IQueryable<>` versions except how `converter` works. The projection works in memory.
 
+#### 1.1.3. `.Convert<TSource, TResult>(converter)`
+
+```csharp
+pagedList.Convert<StudentEntity, StudentDto>(s => s.ToDto());
+```
+
+`.Convert()` method converts `IPagedList<TSource>` to `IPagedList<Result>` by applying the converter to each item.
+
 ### 1.2. Response Header Helper for pagination info
 
 You can use `SetPaginationHeaders<T>()` and `SettingPaginationHeaders<T>()` methods to set pagination-related HTTP response headers.
