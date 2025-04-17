@@ -227,6 +227,21 @@ s.TryParse(out decimal result)
 ```
 where `s` is string. You can optionally specify `NumberStyle` and `IFormatProvider` in some overloads.
 
+### 2.6. Json Serialization Extensions
+
+```csharp
+value.Serialize(options); // Do this
+JsonSerializer.Serialize(value, options); // instead of this
+```
+
+The methods above are identical.
+There is a convenience method for "camelCase" key as follows.
+
+```csharp
+value.SerializeWithCamelCaseKey(indented: true);
+value.SerializeWithCamelCaseKey(indented: false);
+```
+
 ---
 
 ## 3. Convertors
