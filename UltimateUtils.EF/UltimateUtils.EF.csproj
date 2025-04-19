@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils.EF</PackageId>
-        <Version>2.1.8</Version>
+        <Version>2.1.9</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils for EF Core</PackageDescription>
