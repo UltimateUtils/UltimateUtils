@@ -242,6 +242,14 @@ value.SerializeWithCamelCaseKey(indented: true);
 value.SerializeWithCamelCaseKey(indented: false);
 ```
 
+### 2.7. Guid Extensions
+
+```csharp
+str.ToGuid();
+```
+
+`ToGuid()` method on string value returns Guid object from the string representation. It throws exception if not successful.
+
 ---
 
 ## 3. Convertors
