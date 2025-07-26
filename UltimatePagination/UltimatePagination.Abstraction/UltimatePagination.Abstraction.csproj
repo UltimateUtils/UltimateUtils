@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageId>UltimatePagination.Abstraction</PackageId>
+        <Version>0.0.1</Version>
+        <Authors>Soonil Hong</Authors>
+        <Company>MySmallMapleTree</Company>
+        <PackageDescription>Ultimate Pagination Abstraction</PackageDescription>
+        <RepositoryUrl>https://github.com/UltimateUtils/UltimatePagination</RepositoryUrl>
+        <PackageTags>pagination paging pagedlist paginatedlist utility utilities ultimateutils extensions helpers</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>
