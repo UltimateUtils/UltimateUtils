@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\UltimatePagination\UltimatePagination.EF\UltimatePagination.EF.csproj"/>
         <ProjectReference Include="..\UltimateUtils\UltimateUtils.EF\UltimateUtils.EF.csproj"/>
     </ItemGroup>
 
