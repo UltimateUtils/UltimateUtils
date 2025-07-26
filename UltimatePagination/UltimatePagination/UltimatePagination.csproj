@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimatePagination</PackageId>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Pagination</PackageDescription>
@@ -25,6 +25,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\UltimatePagination.Abstraction\UltimatePagination.Abstraction.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0"/>
     </ItemGroup>
 
 </Project>
