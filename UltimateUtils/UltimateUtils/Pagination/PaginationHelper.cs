@@ -224,5 +224,5 @@ public static class PaginationHelper
             pagedList.Select(converter));
     }
 
-    #endregion Clone
+    #endregion Convert
 }
