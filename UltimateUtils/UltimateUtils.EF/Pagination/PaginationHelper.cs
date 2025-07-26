@@ -5,6 +5,7 @@ using UltimateUtils.Pagination;
 
 namespace UltimateUtils.EF.Pagination;
 
+[Obsolete("Use UltimatePagination.EF.PaginationHelper instead")]
 public static class PaginationHelper
 {
     #region PaginateAsync -> PagedList

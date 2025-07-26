@@ -1,5 +1,6 @@
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.PagedListWrapper instead")]
 public class PagedListWrapper<T>
 {
     public int TotalPageCount { get; init; }

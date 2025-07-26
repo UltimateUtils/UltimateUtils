@@ -1,5 +1,6 @@
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.Constants instead")]
 public static class Constants
 {
     public const string XCurrentCount = "x-current-count";

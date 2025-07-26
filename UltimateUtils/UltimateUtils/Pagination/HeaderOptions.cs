@@ -1,5 +1,6 @@
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.HeaderOptions instead")]
 public record HeaderOptions
 {
     public string XCurrentCount { get; set; } = Constants.XCurrentCount;

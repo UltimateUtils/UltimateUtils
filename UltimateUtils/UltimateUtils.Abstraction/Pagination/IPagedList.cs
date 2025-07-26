@@ -1,5 +1,6 @@
 namespace UltimateUtils.Abstraction.Pagination;
 
+[Obsolete("Use UltimatePagination.Abstraction.IPagedList instead")]
 public interface IPagedList<out T> : IReadOnlyList<T>
 {
     /// <summary>

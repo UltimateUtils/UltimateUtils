@@ -3,6 +3,7 @@ using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.PagedListBase instead")]
 public abstract class PagedListBase<T> : IPagedList<T>
 {
     protected readonly List<T> CurrentPageItems = [];

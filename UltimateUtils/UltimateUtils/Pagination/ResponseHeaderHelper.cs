@@ -3,6 +3,7 @@ using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.ResponseHeaderHelper instead")]
 public static class ResponseHeaderHelper
 {
     public static IPagedList<T> SettingPaginationHeaders<T>(

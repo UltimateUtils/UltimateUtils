@@ -3,6 +3,7 @@ using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.PaginationHelper instead")]
 public static class PaginationHelper
 {
     #region Paginate -> PagedList

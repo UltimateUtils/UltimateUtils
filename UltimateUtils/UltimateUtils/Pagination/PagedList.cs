@@ -2,6 +2,7 @@ using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.PagedList instead")]
 public class PagedList<T> : PagedListBase<T>
 {
     private PagedList(

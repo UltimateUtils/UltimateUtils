@@ -3,6 +3,7 @@ using UltimateUtils.Abstraction.Pagination;
 
 namespace UltimateUtils.Pagination;
 
+[Obsolete("Use UltimatePagination.PagedOrderList instead")]
 public class PagedOrderedList<T, TKey> : PagedListBase<T>
 {
     private PagedOrderedList(
