@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils</PackageId>
-        <Version>2.2.0</Version>
+        <Version>2.2.1</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils</PackageDescription>
@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\UltimatePagination\UltimatePagination\UltimatePagination.csproj"/>
         <ProjectReference Include="..\UltimateUtils.Abstraction\UltimateUtils.Abstraction.csproj"/>
     </ItemGroup>
 

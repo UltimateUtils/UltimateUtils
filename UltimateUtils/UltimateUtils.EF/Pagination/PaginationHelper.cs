@@ -10,6 +10,7 @@ public static class PaginationHelper
 {
     #region PaginateAsync -> PagedList
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<T>> PaginateAsync<T>(
         this IQueryable<T> sourceItems,
         int pageNumber,
@@ -41,6 +42,7 @@ public static class PaginationHelper
             currentItems);
     }
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<TResult>> PaginateAsync<TSource, TResult>(
         this IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -77,6 +79,7 @@ public static class PaginationHelper
 
     #region PaginateAsync -> PagedOrderedList
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<T>> PaginateAsync<T, TKey>(
         this IQueryable<T> sourceItems,
         int pageNumber,
@@ -118,6 +121,7 @@ public static class PaginationHelper
             currentItems);
     }
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<TResult>> PaginateAsync<TSource, TKey, TResult>(
         this IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -164,6 +168,7 @@ public static class PaginationHelper
 
     #region PaginateAsync 2 -> PagedOrderedList
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<T>> PaginateAsync<T, TKey>(
         this IQueryable<T> sourceItems,
         Expression<Func<T, TKey>> orderByKeySelectorExpression,
@@ -205,6 +210,7 @@ public static class PaginationHelper
             currentItems);
     }
 
+    [Obsolete("Use UltimatePagination.EF.PaginationHelper.PaginateAsync() instead")]
     public static async Task<IPagedList<TResult>> PaginateAsync<TSource, TKey, TResult>(
         this IQueryable<TSource> sourceItems,
         Expression<Func<TSource, TKey>> orderByKeySelectorExpression,

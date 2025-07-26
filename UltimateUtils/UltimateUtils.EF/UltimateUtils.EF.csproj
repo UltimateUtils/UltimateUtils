@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils.EF</PackageId>
-        <Version>2.2.0</Version>
+        <Version>2.2.1</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils for EF Core</PackageDescription>
@@ -24,11 +24,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\UltimatePagination\UltimatePagination.EF\UltimatePagination.EF.csproj"/>
         <ProjectReference Include="..\UltimateUtils\UltimateUtils.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7"/>
     </ItemGroup>
 
 </Project>

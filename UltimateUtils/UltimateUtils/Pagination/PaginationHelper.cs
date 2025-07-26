@@ -8,6 +8,7 @@ public static class PaginationHelper
 {
     #region Paginate -> PagedList
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T>(
         this IQueryable<T> sourceItems,
         int pageNumber,
@@ -19,6 +20,7 @@ public static class PaginationHelper
             pageSize);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T>(
         this IEnumerable<T> sourceItems,
         int pageNumber,
@@ -30,6 +32,7 @@ public static class PaginationHelper
             pageSize);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TResult>(
         this IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -43,6 +46,7 @@ public static class PaginationHelper
             converter);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TResult>(
         this IEnumerable<TSource> sourceItems,
         int pageNumber,
@@ -60,6 +64,7 @@ public static class PaginationHelper
 
     #region Paginate -> PagedOrderedList
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T, TKey>(
         this IQueryable<T> sourceItems,
         int pageNumber,
@@ -75,6 +80,7 @@ public static class PaginationHelper
             descending);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T, TKey>(
         this IEnumerable<T> sourceItems,
         int pageNumber,
@@ -90,6 +96,7 @@ public static class PaginationHelper
             descending);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
         this IQueryable<TSource> sourceItems,
         int pageNumber,
@@ -107,6 +114,7 @@ public static class PaginationHelper
             converter);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
         this IEnumerable<TSource> sourceItems,
         int pageNumber,
@@ -128,6 +136,7 @@ public static class PaginationHelper
 
     #region Paginate 2 -> PagedOrderedList
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T, TKey>(
         this IQueryable<T> sourceItems,
         Expression<Func<T, TKey>> orderByKeySelectorExpression,
@@ -143,6 +152,7 @@ public static class PaginationHelper
             descending);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<T> Paginate<T, TKey>(
         this IEnumerable<T> sourceItems,
         Expression<Func<T, TKey>> orderByKeySelectorExpression,
@@ -158,6 +168,7 @@ public static class PaginationHelper
             descending);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
         this IQueryable<TSource> sourceItems,
         Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
@@ -175,6 +186,7 @@ public static class PaginationHelper
             converter);
     }
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Paginate() instead")]
     public static IPagedList<TResult> Paginate<TSource, TKey, TResult>(
         this IEnumerable<TSource> sourceItems,
         Expression<Func<TSource, TKey>> orderByKeySelectorExpression,
@@ -196,6 +208,7 @@ public static class PaginationHelper
 
     #region Wrap
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Wrap() instead")]
     public static PagedListWrapper<T> Wrap<T>(this IPagedList<T> pagedList)
     {
         return new PagedListWrapper<T>
@@ -214,6 +227,7 @@ public static class PaginationHelper
 
     #region Convert
 
+    [Obsolete("Use UltimatePagination.PaginationHelper.Convert() instead")]
     public static IPagedList<TResult> Convert<TSource, TResult>(
         this IPagedList<TSource> pagedList,
         Func<TSource, TResult> converter)
