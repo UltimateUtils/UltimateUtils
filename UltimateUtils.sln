@@ -9,13 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils", "UltimateUtils\UltimateUtils.csproj", "{DAAD4F27-AC6F-4A17-8308-91F778EF7C9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils", "UltimateUtils\UltimateUtils\UltimateUtils.csproj", "{DAAD4F27-AC6F-4A17-8308-91F778EF7C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils.EF", "UltimateUtils.EF\UltimateUtils.EF.csproj", "{68EB2010-9D51-4144-9389-464FAD37E6D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils.EF", "UltimateUtils\UltimateUtils.EF\UltimateUtils.EF.csproj", "{68EB2010-9D51-4144-9389-464FAD37E6D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloUltimateUtils", "HelloUltimateUtils\HelloUltimateUtils.csproj", "{C1247916-0AFF-42A5-8D07-753528DB4700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils.Abstraction", "UltimateUtils.Abstraction\UltimateUtils.Abstraction.csproj", "{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateUtils.Abstraction", "UltimateUtils\UltimateUtils.Abstraction\UltimateUtils.Abstraction.csproj", "{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UltimateUtils", "UltimateUtils", "{5274BF5E-3F53-4AC3-81E7-01B0F924F1FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,5 +41,10 @@ Global
 		{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28} = {5274BF5E-3F53-4AC3-81E7-01B0F924F1FE}
+		{DAAD4F27-AC6F-4A17-8308-91F778EF7C9C} = {5274BF5E-3F53-4AC3-81E7-01B0F924F1FE}
+		{68EB2010-9D51-4144-9389-464FAD37E6D8} = {5274BF5E-3F53-4AC3-81E7-01B0F924F1FE}
 	EndGlobalSection
 EndGlobal
