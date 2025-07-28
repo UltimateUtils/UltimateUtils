@@ -5,11 +5,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimatePagination.EF</PackageId>
-        <Version>0.0.4</Version>
+        <Version>0.0.5</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Pagination EF</PackageDescription>
-        <RepositoryUrl>https://github.com/UltimateUtils/UltimatePagination</RepositoryUrl>
+        <RepositoryUrl>https://github.com/UltimateUtils/UltimateUtils</RepositoryUrl>
         <PackageTags>pagination paging pagedlist paginatedlist utility utilities ultimateutils extensions helpers</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
