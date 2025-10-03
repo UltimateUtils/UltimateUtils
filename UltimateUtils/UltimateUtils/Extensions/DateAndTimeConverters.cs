@@ -35,9 +35,14 @@ public static class DateAndTimeConverters
 
     #region DateOnly
 
-    public static DateTime ToDateTime(this DateOnly dateOnly)
+    public static DateTime ToDateTime(this DateOnly dateOnly, TimeOnly? timeOnly = null)
     {
-        return dateOnly.ToDateTime(TimeSpan.Zero.ToTimeOnly());
+        return dateOnly.ToDateTime(timeOnly ?? TimeSpan.Zero.ToTimeOnly());
+    }
+
+    public static DateTimeOffset ToDateTimeOffset(this DateOnly dateOnly, TimeSpan? offset = null)
+    {
+        return dateOnly.ToDateTime().ToDateTimeOffset(offset);
     }
 
     #endregion
