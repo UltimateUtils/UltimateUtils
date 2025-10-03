@@ -14,6 +14,14 @@ public static class DateAndTimeConverters
         return TimeOnly.FromDateTime(dateTime);
     }
 
+    public static DateTimeOffset ToDateTimeOffset(this DateTime dateTime, TimeSpan? offset = null)
+    {
+        return
+            offset is null
+                ? new DateTimeOffset(dateTime)
+                : new DateTimeOffset(dateTime, offset.Value);
+    }
+
     #endregion
 
     #region TimeSpan
