@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimatePagination.EF</PackageId>
-        <Version>0.0.6</Version>
+        <Version>1.0.0</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Pagination EF</PackageDescription>
