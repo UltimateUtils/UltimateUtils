@@ -415,6 +415,7 @@ resharper_constructor_or_destructor_body = block_body
 resharper_accessor_owner_body = expression_body
 resharper_use_heuristics_for_body_style = false
 resharper_force_attribute_style = separate
+resharper_convert_if_statement_to_conditional_ternary_expression_highlighting = hint
 
 
 
