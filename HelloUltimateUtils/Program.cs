@@ -1,6 +1,8 @@
-﻿using HelloUltimateUtils;
-using UltimatePagination;
-using UltimateUtils.Extensions;
-using UltimateUtils.Utils;
+using HelloUltimateUtils.Utils;
 
-Console.WriteLine("Hello, UltimateUtils!");
+var builder = Host.CreateApplicationBuilder(args);
+
+builder
+    .ConfigureServices()
+    .Build()
+    .Run();
