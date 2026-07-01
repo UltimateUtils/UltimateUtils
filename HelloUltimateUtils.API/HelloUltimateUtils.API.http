@@ -1,0 +1,11 @@
+@HelloUltimateUtils_API_HostAddress = https://localhost:7036
+
+GET {{HelloUltimateUtils_API_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{HelloUltimateUtils_API_HostAddress}}/health-check/
+Accept: application/json
+
+###

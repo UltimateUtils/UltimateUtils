@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateFlag", "UltimateFla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloUltimateUtils", "HelloUltimateUtils\HelloUltimateUtils.csproj", "{5CAE9FE9-C0B6-4D44-8426-240CC6775B8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloUltimateUtils.API", "HelloUltimateUtils.API\HelloUltimateUtils.API.csproj", "{0A2ABE51-73DC-410E-831E-7731C950F335}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{5CAE9FE9-C0B6-4D44-8426-240CC6775B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CAE9FE9-C0B6-4D44-8426-240CC6775B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CAE9FE9-C0B6-4D44-8426-240CC6775B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A2ABE51-73DC-410E-831E-7731C950F335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2ABE51-73DC-410E-831E-7731C950F335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2ABE51-73DC-410E-831E-7731C950F335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2ABE51-73DC-410E-831E-7731C950F335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C836410D-21FE-42CC-BF8F-EB9BB7BFEA28} = {5274BF5E-3F53-4AC3-81E7-01B0F924F1FE}
