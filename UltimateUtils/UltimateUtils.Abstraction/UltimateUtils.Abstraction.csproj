@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>UltimateUtils.Abstraction</PackageId>
-        <Version>3.1.1</Version>
+        <Version>4.0.0</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
         <PackageDescription>Ultimate Utils Abstraction</PackageDescription>
@@ -21,10 +21,6 @@
 
     <ItemGroup>
         <None Include="LICENSE" Pack="true" PackagePath=""/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\..\UltimatePagination\UltimatePagination.Abstraction\UltimatePagination.Abstraction.csproj"/>
     </ItemGroup>
 
 </Project>
