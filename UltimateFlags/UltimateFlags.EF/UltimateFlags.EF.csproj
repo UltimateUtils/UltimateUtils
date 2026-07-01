@@ -4,13 +4,13 @@
         <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageId>UltimateFlag</PackageId>
-        <Version>0.0.2</Version>
+        <PackageId>UltimateFlags.EF</PackageId>
+        <Version>0.0.3</Version>
         <Authors>Soonil Hong</Authors>
         <Company>MySmallMapleTree</Company>
-        <PackageDescription>Ultimate FeatureFlag</PackageDescription>
+        <PackageDescription>Ultimate FeatureFlags Abstraction</PackageDescription>
         <RepositoryUrl>https://github.com/UltimateUtils/UltimateUtils</RepositoryUrl>
-        <PackageTags>featureflag featureflag flag</PackageTags>
+        <PackageTags>featureflag featuretoggle flag toggle</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
@@ -21,6 +21,15 @@
 
     <ItemGroup>
         <None Include="LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\UltimateUtils\UltimateUtils.EF\UltimateUtils.EF.csproj"/>
+        <ProjectReference Include="..\UltimateFlags\UltimateFlags.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.17"/>
     </ItemGroup>
 
 </Project>

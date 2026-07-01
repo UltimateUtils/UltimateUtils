@@ -1,6 +1,7 @@
 using HelloUltimateUtils.API.Config;
 using HelloUltimateUtils.API.Services;
 using HelloUltimateUtils.API.Services.Abstraction;
+using UltimateFlags.DI;
 
 namespace HelloUltimateUtils.API.Utils;
 
@@ -49,5 +50,6 @@ internal static class HostingExtensions
         services.Configure<ServiceConfiguration>(configuration.GetRequiredSection(ServiceConfiguration.SectionName));
 
         services.AddTransient<IHealthCheckService, HealthCheckService>();
+        services.AddUltimateFlags(configuration);
     }
 }
