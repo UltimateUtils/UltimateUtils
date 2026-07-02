@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using UltimateFlags.Abstraction.Config;
 using UltimateFlags.Abstraction.Entities;
+using UltimateFlags.Abstraction.Exceptions.ServerFaults;
 using UltimateFlags.Abstraction.Storages;
 using UltimateFlags.EF.Db;
+using UltimatePagination;
+using UltimatePagination.Abstraction;
+using UltimateUtils.Extensions;
 
 namespace UltimateFlags.EF.Storages;
 
@@ -9,109 +17,220 @@ internal class FlagStorage : IFlagStorage
 {
     private readonly ILogger<FlagStorage> _logger;
 
-    private readonly FlagDbContext _flagDbContext;
+    private readonly IFlagDbContext _flagDbContext;
 
-    public FlagStorage(ILogger<FlagStorage> logger, FlagDbContext flagDbContext)
+    private readonly UltimateFlagConfiguration _ultimateFlagConfiguration;
+
+    public FlagStorage(
+        ILogger<FlagStorage> logger,
+        IFlagDbContext flagDbContext,
+        IOptions<UltimateFlagConfiguration> options)
     {
         _logger = logger;
         _flagDbContext = flagDbContext;
+        _ultimateFlagConfiguration = options.Value;
     }
-
-    #region sync
 
     public Flag Create(Flag flag)
     {
-        throw new NotImplementedException();
+        EntityEntry<Flag> created = _flagDbContext.Flags.Add(flag);
+
+        return created.Entity;
     }
 
-    public Flag? Read(string key)
+    public Flag? Read(Guid id)
     {
-        throw new NotImplementedException();
+        return
+            _flagDbContext
+                .Flags
+                .AsNoTracking()
+                .FirstOrDefault(flag => flag.Id == id);
     }
 
-    public Flag? Get(string key)
+    public Flag? Read(string name, Guid? parentId)
     {
-        throw new NotImplementedException();
+        return
+            _flagDbContext
+                .Flags
+                .AsNoTracking()
+                .FirstOrDefault(
+                    flag =>
+                        flag.Name == name
+                        && flag.ParentId == parentId);
     }
 
-    public IEnumerable<Flag> List()
+    public Flag? Get(Guid id)
     {
-        throw new NotImplementedException();
+        return _flagDbContext.Flags.Find(id);
+    }
+
+    public Flag? Get(string name, Guid? parentId)
+    {
+        return
+            _flagDbContext
+                .Flags
+                .FirstOrDefault(
+                    flag =>
+                        flag.Name == name
+                        && flag.ParentId == parentId);
+    }
+
+    public IPagedList<Flag> List(
+        string? searchString,
+        Guid? parentId,
+        bool? isOn, // todo
+        int pageNumber,
+        int pageSize)
+    {
+        return
+            _flagDbContext
+                .Flags
+                .AsNoTracking()
+                .Where(
+                    flag =>
+                        flag.ParentId == parentId
+                        && (searchString.IsNullOrEmpty()
+                            || flag.Name.Contains(searchString)))
+                .OrderBy(flag => flag.Name)
+                .Paginate(pageNumber, pageSize);
     }
 
     public Flag Update(Flag flag)
     {
-        throw new NotImplementedException();
+        EntityEntry<Flag> updated = _flagDbContext.Flags.Update(flag);
+
+        return updated.Entity;
     }
 
-    public Flag Delete(Flag flag)
+    public int Delete(Guid id)
     {
-        throw new NotImplementedException();
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Id == id)
+                .ExecuteUpdate(
+                    setters =>
+                        setters.SetProperty(
+                            flag => flag.DeletedAt,
+                            DateTime.UtcNow));
     }
 
-    public void Enable(string key)
+    public int Purge(Guid id)
     {
-        throw new NotImplementedException();
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Id == id && f.DeletedAt != null)
+                .ExecuteDelete();
     }
 
-    public bool IsOn(string key)
+    public int Purge(DateTime? fromInclusive, DateTime? toInclusive)
     {
-        throw new NotImplementedException();
+        return
+            _flagDbContext
+                .Flags
+                .Where(
+                    f =>
+                        f.DeletedAt.HasValue
+                        && (fromInclusive == null || f.DeletedAt.Value >= fromInclusive.Value)
+                        && (toInclusive == null || f.DeletedAt.Value <= toInclusive.Value))
+                .ExecuteDelete();
+    }
+
+    public int Enable(Guid id)
+    {
+        // todo - 원래 켜져 있는 경우 return 값이 어떻게 되는지 확인
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Id == id)
+                .ExecuteUpdate(
+                    setters =>
+                        setters
+                            .SetProperty(
+                                f => f.IsOn,
+                                true));
+    }
+
+    public int Enable(string name, Guid? parentId)
+    {
+        // todo - 원래 켜져 있는 경우 return 값이 어떻게 되는지 확인
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Name == name && f.ParentId == parentId)
+                .ExecuteUpdate(
+                    setters =>
+                        setters
+                            .SetProperty(
+                                f => f.IsOn,
+                                true));
+    }
+
+    public int Disable(Guid id)
+    {
+        // todo - 원래 켜져 있는 경우 return 값이 어떻게 되는지 확인
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Id == id)
+                .ExecuteUpdate(
+                    setters =>
+                        setters
+                            .SetProperty(
+                                f => f.IsOn,
+                                false));
+    }
+
+    public int Disable(string name, Guid? parentId)
+    {
+        // todo - 원래 켜져 있는 경우 return 값이 어떻게 되는지 확인
+        return
+            _flagDbContext
+                .Flags
+                .Where(f => f.Name == name && f.ParentId == parentId)
+                .ExecuteUpdate(
+                    setters =>
+                        setters
+                            .SetProperty(
+                                f => f.IsOn,
+                                false));
+    }
+
+    public bool IsOn(Guid id)
+    {
+        return
+            _flagDbContext
+                .Flags
+                .Where(flag => flag.Id == id)
+                .Select(flag => flag.IsOn)
+                .FirstOrDefault();
+    }
+
+    public bool IsOn(string name, Guid? parentId)
+    {
+        return
+            _flagDbContext
+                .Flags
+                .Where(
+                    flag =>
+                        flag.Name == name
+                        && flag.ParentId == parentId)
+                .Select(flag => flag.IsOn)
+                .FirstOrDefault();
     }
 
     public int SaveChanges()
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _flagDbContext.SaveChanges();
+        }
+        catch (DbUpdateException e)
+        {
+            _logger.LogError(e, "{ErrorMessage}", e.Message);
+
+            return 0;
+        }
     }
-
-    #endregion sync
-
-    #region async
-
-    public Task<Flag> CreateAsync(Flag flag, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Flag?> ReadAsync(string key, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Flag?> GetAsync(string key, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<Flag>> ListAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Flag> UpdateAsync(Flag flag, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Flag> DeleteAsync(Flag flag, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task EnableAsync(string key, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> IsOnAsync(string key, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    #endregion async
 }

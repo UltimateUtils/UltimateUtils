@@ -172,12 +172,12 @@ dotnet_naming_rule.private_methods_must_be_underscore_pascal_case.symbols = priv
 dotnet_naming_rule.private_methods_must_be_underscore_pascal_case.style = underscore_pascal_case_style
 dotnet_naming_rule.private_methods_must_be_underscore_pascal_case.severity = warning
 
-# local method must be _camelCase
-dotnet_naming_symbols.local_methods.applicable_kinds = method
-dotnet_naming_symbols.local_methods.applicable_accessibilities = local
-dotnet_naming_rule.local_methods_must_be_underscore_camel_case.symbols = local_methods
-dotnet_naming_rule.local_methods_must_be_underscore_camel_case.style = underscore_camel_case_style
-dotnet_naming_rule.local_methods_must_be_underscore_camel_case.severity = warning
+# local function must be _camelCase
+dotnet_naming_symbols.local_functions.applicable_kinds = local_function
+dotnet_naming_symbols.local_functions.applicable_accessibilities = local
+dotnet_naming_rule.local_functions_must_be_underscore_camel_case.symbols = local_functions
+dotnet_naming_rule.local_functions_must_be_underscore_camel_case.style = underscore_camel_case_style
+dotnet_naming_rule.local_functions_must_be_underscore_camel_case.severity = warning
 
 # public async method must be PascalCase with async suffix
 dotnet_naming_symbols.public_async_methods.applicable_kinds = method
@@ -196,12 +196,12 @@ dotnet_naming_rule.private_async_method_must_be_underscore_pascal_case_with_asyn
 dotnet_naming_rule.private_async_method_must_be_underscore_pascal_case_with_async_suffix.severity = warning
 
 # local async method must be _camelCase with async suffix
-dotnet_naming_symbols.local_async_methods.applicable_kinds = method
-dotnet_naming_symbols.local_async_methods.applicable_accessibilities = local
-dotnet_naming_symbols.local_async_methods.required_modifiers = async
-dotnet_naming_rule.local_async_method_must_be_underscore_camel_case_with_async_suffix.symbols = local_async_methods
-dotnet_naming_rule.local_async_method_must_be_underscore_camel_case_with_async_suffix.style = underscore_camel_case_async_style
-dotnet_naming_rule.local_async_method_must_be_underscore_camel_case_with_async_suffix.severity = warning
+dotnet_naming_symbols.local_async_functions.applicable_kinds = local_function
+dotnet_naming_symbols.local_async_functions.applicable_accessibilities = local
+dotnet_naming_symbols.local_async_functions.required_modifiers = async
+dotnet_naming_rule.local_async_function_must_be_underscore_camel_case_with_async_suffix.symbols = local_async_functions
+dotnet_naming_rule.local_async_function_must_be_underscore_camel_case_with_async_suffix.style = underscore_camel_case_async_style
+dotnet_naming_rule.local_async_function_must_be_underscore_camel_case_with_async_suffix.severity = warning
 
 
 #################################################################################################################################################
