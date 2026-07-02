@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using UltimateFlags.Abstraction.Config;
 using UltimateFlags.Abstraction.Entities;
 using UltimateFlags.Abstraction.Storages;
+using UltimatePagination.Abstraction;
 
 namespace UltimateFlags.Storages;
 
@@ -27,17 +28,39 @@ internal class FlagStorage : IFlagStorage
         throw new NotImplementedException();
     }
 
-    public Flag? Read(string key)
+    public Flag? Read(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Flag? Get(string key)
+    public Flag? Read(string name, Guid? parentId)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<Flag> List()
+    public Flag? Get(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Flag? Get(string name, Guid? parentId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IPagedList<Flag> List(
+        string? searchString,
+        int pageNumber,
+        int pageSize)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IPagedList<Flag> List(
+        string? searchString,
+        Guid? parentId,
+        int pageNumber,
+        int pageSize)
     {
         throw new NotImplementedException();
     }
@@ -52,12 +75,37 @@ internal class FlagStorage : IFlagStorage
         throw new NotImplementedException();
     }
 
-    public void Enable(string key)
+    public Flag Delete(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public bool IsOn(string key)
+    public void Enable(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Enable(string name, Guid? parentId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Disable(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Disable(string name, Guid? parentId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsOn(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsOn(string name, Guid? parentId)
     {
         throw new NotImplementedException();
     }
@@ -76,37 +124,92 @@ internal class FlagStorage : IFlagStorage
         throw new NotImplementedException();
     }
 
-    public Task<Flag?> ReadAsync(string key, CancellationToken cancellationToken = default)
+    public Task<Flag?> ReadAsync(Guid id, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Flag?> GetAsync(string key, CancellationToken cancellationToken = default)
+    public Task<Flag?> ReadAsync(
+        string name,
+        Guid? parentId,
+        CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Flag>> ListAsync(CancellationToken cancellationToken = default)
+    public ValueTask<Flag?> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Flag> UpdateAsync(Flag flag, CancellationToken cancellationToken = default)
+    public Task<Flag?> GetAsync(
+        string name,
+        Guid? parentId,
+        CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Flag> DeleteAsync(Flag flag, CancellationToken cancellationToken = default)
+    public Task<IPagedList<Flag>> ListAsync(
+        string? searchString,
+        int pageNumber,
+        int pageSize,
+        CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task EnableAsync(string key, CancellationToken cancellationToken = default)
+    public Task<IPagedList<Flag>> ListAsync(
+        string? searchString,
+        Guid? parentId,
+        int pageNumber,
+        int pageSize,
+        CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> IsOnAsync(string key, CancellationToken cancellationToken = default)
+    // public Task<Flag> UpdateAsync(Flag flag, CancellationToken cancellationToken = default)
+    // {
+    //     throw new NotImplementedException();
+    // }
+
+    // public Task<Flag> DeleteAsync(Flag flag, CancellationToken cancellationToken = default)
+    // {
+    //     throw new NotImplementedException();
+    // }
+
+    // public Task<Flag> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    // {
+    //     throw new NotImplementedException();
+    // }
+
+    public Task EnableAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task EnableAsync(string name, Guid? parentId, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DisableAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DisableAsync(string name, Guid? parentId, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> IsOnAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> IsOnAsync(string name, Guid? parentId, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }

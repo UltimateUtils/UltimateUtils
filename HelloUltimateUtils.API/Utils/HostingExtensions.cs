@@ -1,7 +1,9 @@
 using HelloUltimateUtils.API.Config;
+using HelloUltimateUtils.API.Db;
 using HelloUltimateUtils.API.Services;
 using HelloUltimateUtils.API.Services.Abstraction;
-using UltimateFlags.DI;
+using Microsoft.EntityFrameworkCore;
+using UltimateFlags.EF.DI;
 
 namespace HelloUltimateUtils.API.Utils;
 
@@ -50,6 +52,8 @@ internal static class HostingExtensions
         services.Configure<ServiceConfiguration>(configuration.GetRequiredSection(ServiceConfiguration.SectionName));
 
         services.AddTransient<IHealthCheckService, HealthCheckService>();
-        services.AddUltimateFlags(configuration);
+        services.AddUltimateFlags<HelloDbContext>(
+            configuration,
+            options => options.UseNpgsql("name=ConnectionStrings:UltimateFlagsDb"));
     }
 }

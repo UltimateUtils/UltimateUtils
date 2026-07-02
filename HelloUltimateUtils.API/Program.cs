@@ -1,8 +1,8 @@
 using HelloUltimateUtils.API.Utils;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var app =
+WebApplication app =
     builder
         .ConfigureServices()
         .ConfigurePipeline();

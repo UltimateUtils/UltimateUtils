@@ -1,5 +1,5 @@
 namespace UltimateFlags.Abstraction.Contracts;
 
-public record FlagCreationRequest
+public record FlagCreationRequest : FlagRequest
 {
 }
