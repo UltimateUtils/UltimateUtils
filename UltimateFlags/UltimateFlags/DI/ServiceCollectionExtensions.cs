@@ -13,7 +13,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUltimateFlags(this IServiceCollection services, IConfiguration configuration)
     {
-        var configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+        IConfigurationSection configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+
         if (configurationSection.Exists())
             services.Configure<UltimateFlagConfiguration>(configurationSection);
 
@@ -27,7 +28,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddUltimateFlags<T>(this IServiceCollection services, IConfiguration configuration)
         where T : class, IFlagStorage
     {
-        var configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+        IConfigurationSection configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+
         if (configurationSection.Exists())
             services.Configure<UltimateFlagConfiguration>(configurationSection);
 
