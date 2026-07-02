@@ -11,6 +11,9 @@
     <Project Path="UltimateFlags/UltimateFlags.EF/UltimateFlags.EF.csproj" />
     <Project Path="UltimateFlags/UltimateFlags/UltimateFlags.csproj" />
   </Folder>
+  <Folder Name="/UltimateFlags/Examples/">
+    <Project Path="UltimateFlags/Examples/UltimateFlags.Example.EF.Host/UltimateFlags.Example.EF.Host.csproj" />
+  </Folder>
   <Folder Name="/UltimatePagination/">
     <Project Path="UltimatePagination/UltimatePagination.Abstraction/UltimatePagination.Abstraction.csproj" />
     <Project Path="UltimatePagination/UltimatePagination.EF/UltimatePagination.EF.csproj" />

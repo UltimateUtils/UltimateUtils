@@ -1,0 +1,11 @@
+@UltimateFlags_Example_EF_Host_HostAddress = https://localhost:7141
+
+GET {{UltimateFlags_Example_EF_Host_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{UltimateFlags_Example_EF_Host_HostAddress}}/health-check/
+Accept: application/json
+
+###
