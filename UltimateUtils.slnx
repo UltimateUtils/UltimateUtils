@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="UltimateUtils.sln.DotSettings" />
+  </Folder>
+  <Folder Name="/UltimateFlags/">
+    <Project Path="UltimateFlags/UltimateFlags.Abstraction/UltimateFlags.Abstraction.csproj" />
+    <Project Path="UltimateFlags/UltimateFlags.EF/UltimateFlags.EF.csproj" />
+    <Project Path="UltimateFlags/UltimateFlags/UltimateFlags.csproj" />
+  </Folder>
+  <Folder Name="/UltimatePagination/">
+    <Project Path="UltimatePagination/UltimatePagination.Abstraction/UltimatePagination.Abstraction.csproj" />
+    <Project Path="UltimatePagination/UltimatePagination.EF/UltimatePagination.EF.csproj" />
+    <Project Path="UltimatePagination/UltimatePagination/UltimatePagination.csproj" />
+  </Folder>
+  <Folder Name="/UltimateUtils/">
+    <Project Path="UltimateUtils/UltimateUtils.Abstraction/UltimateUtils.Abstraction.csproj" />
+    <Project Path="UltimateUtils/UltimateUtils.EF/UltimateUtils.EF.csproj" />
+    <Project Path="UltimateUtils/UltimateUtils/UltimateUtils.csproj" />
+  </Folder>
+  <Project Path="HelloUltimateUtils.API/HelloUltimateUtils.API.csproj" />
+  <Project Path="HelloUltimateUtils/HelloUltimateUtils.csproj" />
+</Solution>
