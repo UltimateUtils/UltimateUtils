@@ -34,7 +34,7 @@ public interface IFlagManager
 
     public Flag Update(Guid id, FlagUpdateRequest contract);
 
-    public int Delete(Guid id);
+    public Flag Delete(Guid id);
 
     public int Purge(Guid id);
 

@@ -91,8 +91,8 @@ public interface IFlagStorage
     ///     Soft-deletes a FLAG by ID.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <returns>Number of soft-deleted flags. 1 if successful. 0 Otherwise.</returns>
-    public int Delete(Guid id);
+    /// <returns>An entity of the deleted FLAG</returns>
+    public Flag Delete(Flag id);
 
     /// <summary>
     ///     Purges/Hard-deletes a FLAG by ID.

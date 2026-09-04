@@ -61,7 +61,7 @@ internal class FlagStorage : IFlagStorage
         throw new NotImplementedException();
     }
 
-    public int Delete(Guid id)
+    public Flag Delete(Flag id)
     {
         throw new NotImplementedException();
     }

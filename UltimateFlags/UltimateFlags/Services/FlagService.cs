@@ -156,9 +156,13 @@ public class FlagService : IFlagService
             : throw new FlagUpdateFailed { Area = $"{nameof(FlagService)}.{nameof(Update)}(id, contract)", };
     }
 
-    public int Delete(Guid id)
+    public FlagResponse Delete(Guid id)
     {
-        return _flagManager.Delete(id);
+        Flag deleteEntity = _flagManager.Delete(id);
+
+        _flagManager.SaveChanges();
+
+        return deleteEntity.ToContract();
     }
 
     public int Purge(Guid id)

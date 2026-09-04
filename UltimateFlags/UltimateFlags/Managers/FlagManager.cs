@@ -94,27 +94,16 @@ internal class FlagManager : IFlagManager
         return _flagStorage.Update(entity.UpdateFrom(contract));
     }
 
-    public int Delete(Guid id)
+    public Flag Delete(Guid id)
     {
-        int deletedCount = _flagStorage.Delete(id);
-
-        if (deletedCount == 1)
-            return deletedCount;
-
-        Flag? flag = _flagStorage.Read(id);
-
-        if (flag is null)
-        {
-            throw new FlagNotFound
+        Flag entity =
+            _flagStorage.Get(id)
+            ?? throw new FlagNotFound
             {
                 Area = $"{nameof(FlagManager)}.{nameof(Delete)}(id)",
             };
-        }
 
-        throw new FlagDeletionFailed
-        {
-            Area = $"{nameof(FlagManager)}.{nameof(Delete)}(id)",
-        };
+        return _flagStorage.Delete(entity);
     }
 
     public int Purge(Guid id)

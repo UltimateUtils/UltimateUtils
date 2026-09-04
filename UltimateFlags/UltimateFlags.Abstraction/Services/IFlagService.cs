@@ -127,11 +127,11 @@ public interface IFlagService
     ///     Soft-Deletes a FLAG by ID.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <returns>Number of soft-deleted flags. 1 if successful. 0 Otherwise.</returns>
+    /// <returns>Response contract of deleted FLAG</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
-    public int Delete(Guid id);
+    public FlagResponse Delete(Guid id);
 
     /// <summary>
     ///     Purge/Hard-Deletes a FLAG

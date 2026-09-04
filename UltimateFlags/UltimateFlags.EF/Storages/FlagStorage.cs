@@ -102,17 +102,11 @@ internal class FlagStorage : IFlagStorage
         return updated.Entity;
     }
 
-    public int Delete(Guid id)
+    public Flag Delete(Flag flag)
     {
-        return
-            _flagDbContext
-                .Flags
-                .Where(f => f.Id == id)
-                .ExecuteUpdate(
-                    setters =>
-                        setters.SetProperty(
-                            flag => flag.DeletedAt,
-                            DateTime.UtcNow));
+        EntityEntry<Flag> deleted = _flagDbContext.Flags.Remove(flag);
+
+        return deleted.Entity;
     }
 
     public int Purge(Guid id)

@@ -16,6 +16,8 @@ public static class FlagHelper
         if (contract.IsOn.HasValue && entity.IsOn != contract.IsOn.Value)
             entity.IsOn = contract.IsOn.Value;
 
+        entity.UpdatedAt = DateTime.UtcNow;
+
         return entity;
     }
 
