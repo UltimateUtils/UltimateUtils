@@ -160,14 +160,23 @@ public class FlagService : IFlagService
     {
         Flag deleteEntity = _flagManager.Delete(id);
 
-        _flagManager.SaveChanges();
-
-        return deleteEntity.ToContract();
+        return _flagManager.SaveChanges() > 0
+            ? deleteEntity.ToContract()
+            : throw new FlagDeletionFailed { Area = $"{nameof(FlagService)}.{nameof(Delete)}(id)", };
     }
 
     public int Purge(Guid id)
     {
-        return _flagManager.Purge(id);
+        int purgedCount = _flagManager.Purge(id);
+        if (purgedCount != 1)
+        {
+            throw new FlagPurgeFailed
+            {
+                Area = $"{nameof(FlagManager)}.{nameof(Purge)}(id)",
+            };
+        }
+
+        return purgedCount;
     }
 
     public int Purge(DateTime? fromInclusive = null, DateTime? toInclusive = null)

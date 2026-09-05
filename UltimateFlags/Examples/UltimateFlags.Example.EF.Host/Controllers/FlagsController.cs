@@ -70,6 +70,6 @@ public class FlagsController : ControllerBase
     [EndpointName("DeleteFlag")]
     public int Delete([FromRoute] Guid id)
     {
-        return _flagService.Delete(id);
+        return _flagService.Purge(id);
     }
 }

@@ -126,14 +126,7 @@ internal class FlagManager : IFlagManager
             };
         }
 
-        int purgedCount = _flagStorage.Purge(id);
-        if (purgedCount == 1)
-            return purgedCount;
-
-        throw new FlagPurgeFailed
-        {
-            Area = $"{nameof(FlagManager)}.{nameof(Purge)}(id)",
-        };
+        return _flagStorage.Purge(id);
     }
 
     public int Purge(DateTime? fromInclusive = null, DateTime? toInclusive = null)
