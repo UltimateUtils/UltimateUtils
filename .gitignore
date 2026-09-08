@@ -373,3 +373,6 @@ FodyWeavers.xsd
 
 # JetBrains IDE
 .idea/
+
+# SQLite
+/UltimateFlags/Examples/UltimateFlags.Example.EF.Host/UltimateFlagsDB.*
