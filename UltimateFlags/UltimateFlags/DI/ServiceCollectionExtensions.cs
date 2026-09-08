@@ -13,25 +13,30 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUltimateFlags(this IServiceCollection services, IConfiguration configuration)
     {
-        var configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+        IConfigurationSection configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+
         if (configurationSection.Exists())
             services.Configure<UltimateFlagConfiguration>(configurationSection);
 
-        services.AddScoped<IFlagStorage, FlagStorage>();
+        services.AddScoped<IFlagQueryStorage, FlagQueryStorage>();
+        services.AddScoped<IFlagCommandStorage, FlagCommandStorage>();
         services.AddScoped<IFlagManager, FlagManager>();
         services.AddScoped<IFlagService, FlagService>();
 
         return services;
     }
 
-    public static IServiceCollection AddUltimateFlags<T>(this IServiceCollection services, IConfiguration configuration)
-        where T : class, IFlagStorage
+    public static IServiceCollection AddUltimateFlags<TQ, TC>(this IServiceCollection services, IConfiguration configuration)
+        where TQ : class, IFlagQueryStorage
+        where TC : class, IFlagCommandStorage
     {
-        var configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+        IConfigurationSection configurationSection = configuration.GetSection(UltimateFlagConfiguration.SectionName);
+
         if (configurationSection.Exists())
             services.Configure<UltimateFlagConfiguration>(configurationSection);
 
-        services.AddScoped<IFlagStorage, T>();
+        services.AddScoped<IFlagQueryStorage, TQ>();
+        services.AddScoped<IFlagCommandStorage, TC>();
         services.AddScoped<IFlagManager, FlagManager>();
         services.AddScoped<IFlagService, FlagService>();
 
