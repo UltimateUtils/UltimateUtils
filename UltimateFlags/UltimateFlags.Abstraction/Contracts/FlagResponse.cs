@@ -2,9 +2,17 @@ namespace UltimateFlags.Abstraction.Contracts;
 
 public record FlagResponse
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; init; }
 
-    public required string Name { get; set; }
+    public required string Name { get; init; }
 
-    public bool IsOn { get; set; }
+    public required Guid? ParentId { get; init; }
+
+    public required bool IsOn { get; init; }
+
+    public required string? Description { get; init; }
+
+    public required DateTime CreatedAt { get; init; }
+
+    public required DateTime UpdatedAt { get; init; }
 }
