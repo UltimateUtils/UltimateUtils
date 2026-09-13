@@ -31,4 +31,14 @@ public static class GenericObjectExtensions
 
         return argument.Value;
     }
+
+    public static bool IsNull<T>([NotNullWhen(false)] this T? argument)
+    {
+        return argument is null;
+    }
+
+    public static bool IsNotNull<T>([NotNullWhen(true)] this T? argument)
+    {
+        return argument is not null;
+    }
 }
