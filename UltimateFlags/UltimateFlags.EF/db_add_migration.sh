@@ -3,4 +3,4 @@
 # Run this script from your Host project's directory
 # after installing Microsoft.EntityFrameworkCore.Design nuget package
 
-dotnet ef migrations add <MigrationName> -o Data/Migrations
+dotnet ef migrations add <MigrationName> -o Db/Migrations
