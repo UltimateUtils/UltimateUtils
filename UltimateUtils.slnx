@@ -11,6 +11,11 @@
     <Project Path="UltimateFlags/UltimateFlags.EF/UltimateFlags.EF.csproj" />
     <Project Path="UltimateFlags/UltimateFlags/UltimateFlags.csproj" />
   </Folder>
+  <Folder Name="/UltimateFlags/Examples/">
+    <Project Path="UltimateFlags/Examples/UltimateFlags.Api.v10/UltimateFlags.Api.v10.csproj" />
+    <Project Path="UltimateFlags/Examples/UltimateFlags.Api.v8/UltimateFlags.Api.v8.csproj" />
+    <Project Path="UltimateFlags/Examples/UltimateFlags.Api.v9/UltimateFlags.Api.v9.csproj" />
+  </Folder>
   <Folder Name="/UltimatePagination/">
     <Project Path="UltimatePagination/UltimatePagination.Abstraction/UltimatePagination.Abstraction.csproj" />
     <Project Path="UltimatePagination/UltimatePagination.EF/UltimatePagination.EF.csproj" />

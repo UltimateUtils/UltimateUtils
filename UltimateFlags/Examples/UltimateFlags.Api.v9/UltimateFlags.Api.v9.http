@@ -1,0 +1,11 @@
+@UltimateFlags_Api_v9_HostAddress = https://localhost:7131
+
+GET {{UltimateFlags_Api_v9_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{UltimateFlags_Api_v9_HostAddress}}/health-check/
+Accept: application/json
+
+###
