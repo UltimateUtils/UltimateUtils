@@ -16,6 +16,12 @@
     <Project Path="UltimateFlags/Examples/UltimateFlags.Api.v8/UltimateFlags.Api.v8.csproj" />
     <Project Path="UltimateFlags/Examples/UltimateFlags.Api.v9/UltimateFlags.Api.v9.csproj" />
   </Folder>
+  <Folder Name="/UltimateFlags/Tests/">
+    <Project Path="UltimateFlags/Tests/UltimateFlags.EF.IntegrationTests/UltimateFlags.EF.IntegrationTests.csproj" />
+    <Project Path="UltimateFlags/Tests/UltimateFlags.EF.UnitTests/UltimateFlags.EF.UnitTests.csproj" />
+    <Project Path="UltimateFlags/Tests/UltimateFlags.IntegrationTests/UltimateFlags.IntegrationTests.csproj" />
+    <Project Path="UltimateFlags/Tests/UltimateFlags.UnitTests/UltimateFlags.UnitTests.csproj" />
+  </Folder>
   <Folder Name="/UltimatePagination/">
     <Project Path="UltimatePagination/UltimatePagination.Abstraction/UltimatePagination.Abstraction.csproj" />
     <Project Path="UltimatePagination/UltimatePagination.EF/UltimatePagination.EF.csproj" />
