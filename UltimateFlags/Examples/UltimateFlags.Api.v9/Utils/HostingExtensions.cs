@@ -39,6 +39,11 @@ internal static class HostingExtensions
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+            app.UseSwaggerUi(
+                options =>
+                {
+                    options.DocumentPath = "/openapi/v1.json";
+                });
         }
 
         app.UseHttpsRedirection();
@@ -53,6 +58,8 @@ internal static class HostingExtensions
         services.Configure<ServiceConfiguration>(configuration.GetRequiredSection(ServiceConfiguration.SectionName));
 
         services.AddTransient<IHealthCheckService, HealthCheckService>();
+        services.AddTransient<IFlagService, FlagService>();
+        services.AddTransient<UltimateFlags.Abstraction.Services.IFlagService, UltimateFlags.Services.FlagService>();
         services.AddUltimateFlags<MyFlagDbContext>(
             configuration,
             options => options.UseSqlite("name=ConnectionStrings:MyFlagsDb"));
