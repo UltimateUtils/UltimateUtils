@@ -30,6 +30,14 @@ public interface IFlagQueryStorage
     public Flag? Read(string name, Guid? parentId);
 
     /// <summary>
+    ///     Retrieves children of the specified FLAG.
+    /// </summary>
+    /// <param name="parentId">ParentID</param>
+    /// <param name="deleted">Checks both deleted and undeleted flags if null</param>
+    /// <returns>Children of the specified FLAG</returns>
+    public IQueryable<Flag> ReadAll(Guid? parentId, bool? deleted = false);
+
+    /// <summary>
     ///     Searches and retrieves FLAGs.
     /// </summary>
     /// <remarks>

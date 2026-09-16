@@ -5,7 +5,7 @@ namespace UltimateFlags.Helpers;
 
 public static class FlagHelper
 {
-    internal static Flag UpdateFrom(this Flag entity, FlagUpdateRequest contract)
+    public static Flag UpdateFrom(this Flag entity, FlagUpdateRequest contract)
     {
         // todo - make it better
 
@@ -35,21 +35,21 @@ public static class FlagHelper
         return entity;
     }
 
-    internal static Flag Enabled(this Flag entity)
+    public static Flag Enabled(this Flag entity)
     {
         entity.IsOn = true;
 
         return entity;
     }
 
-    internal static Flag Disabled(this Flag entity)
+    public static Flag Disabled(this Flag entity)
     {
         entity.IsOn = false;
 
         return entity;
     }
 
-    internal static Flag Deleted(this Flag entity)
+    public static Flag Deleted(this Flag entity)
     {
         entity.DeletedAt = DateTime.UtcNow;
 

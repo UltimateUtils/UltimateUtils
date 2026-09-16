@@ -58,6 +58,23 @@ public class FlagQueryStorage : IFlagQueryStorage
                         && flag.ParentId == parentId);
     }
 
+    public IQueryable<Flag> ReadAll(Guid? parentId, bool? deleted = false)
+    {
+        IQueryable<Flag> flagsQuery = _flagDbContext.Flags.AsNoTracking();
+
+        return
+            deleted is null
+                ? flagsQuery
+                    .IgnoreQueryFilters()
+                    .Where(flag => flag.ParentId == parentId)
+                : deleted.Value
+                    ? flagsQuery
+                        .IgnoreQueryFilters()
+                        .Where(flag => flag.ParentId == parentId && flag.DeletedAt.HasValue)
+                    : flagsQuery
+                        .Where(flag => flag.ParentId == parentId);
+    }
+
     public IPagedList<Flag> List(string? searchString, bool? isOn, int pageNumber, int pageSize)
     {
         return

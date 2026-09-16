@@ -5,6 +5,7 @@ using UltimateFlags.Abstraction.Contracts;
 using UltimateFlags.Abstraction.Entities;
 using UltimateFlags.Abstraction.Storages;
 using UltimateFlags.EF.Db;
+using UltimateFlags.Helpers;
 
 namespace UltimateFlags.EF.Storages;
 
@@ -52,6 +53,23 @@ public class FlagCommandStorage : IFlagCommandStorage
                         && flag.ParentId == parentId);
     }
 
+    public IEnumerable<Flag> GetAll(Guid? parentId, bool? deleted)
+    {
+        IQueryable<Flag> flagsQuery = _flagDbContext.Flags;
+
+        return
+            deleted is null
+                ? flagsQuery
+                    .IgnoreQueryFilters()
+                    .Where(flag => flag.ParentId == parentId)
+                : deleted.Value
+                    ? flagsQuery
+                        .IgnoreQueryFilters()
+                        .Where(flag => flag.ParentId == parentId && flag.DeletedAt.HasValue)
+                    : flagsQuery
+                        .Where(flag => flag.ParentId == parentId);
+    }
+
     public Flag Create(Flag flag)
     {
         EntityEntry<Flag> created = _flagDbContext.Flags.Add(flag);
@@ -83,21 +101,18 @@ public class FlagCommandStorage : IFlagCommandStorage
 
     public Flag Delete(Flag flag)
     {
-        EntityEntry<Flag> softDeleted =
-            _flagDbContext
-                .Flags
-                .Update(flag);
+        EntityEntry<Flag> softDeleted = _flagDbContext.Flags.Update(flag.Deleted());
 
         return softDeleted.Entity;
     }
 
-    public int ExecuteDelete(Guid id)
+    public int ExecuteDelete(IEnumerable<Guid> ids)
     {
         return
             _flagDbContext
                 .Flags
                 .AsNoTracking()
-                .Where(f => f.Id == id)
+                .Where(f => ids.Contains(f.Id))
                 .ExecuteUpdate(
                     setters =>
                         setters
@@ -115,7 +130,6 @@ public class FlagCommandStorage : IFlagCommandStorage
 
     public int ExecutePurge(Guid id)
     {
-        // todo - hierarchy
         return
             _flagDbContext
                 .Flags
@@ -127,7 +141,6 @@ public class FlagCommandStorage : IFlagCommandStorage
 
     public int ExecutePurge(DateTime? fromInclusive, DateTime? toInclusive)
     {
-        // todo - hierarchy
         return
             _flagDbContext
                 .Flags

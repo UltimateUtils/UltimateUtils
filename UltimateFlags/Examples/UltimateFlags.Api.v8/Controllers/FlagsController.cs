@@ -82,7 +82,7 @@ public class FlagsController : ControllerBase
 
     [HttpDelete]
     [Route("{id:guid}")]
-    public FlagResponse Delete([FromRoute] Guid id, [FromQuery] bool purge = false)
+    public IEnumerable<FlagResponse> Delete([FromRoute] Guid id, [FromQuery] bool purge = false)
     {
         return
             purge

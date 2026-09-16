@@ -16,6 +16,11 @@ public class FlagCommandStorage : IFlagCommandStorage
         throw new NotImplementedException();
     }
 
+    public IEnumerable<Flag> GetAll(Guid? parentId, bool? deleted)
+    {
+        throw new NotImplementedException();
+    }
+
     public Flag Create(Flag flag)
     {
         throw new NotImplementedException();
@@ -36,7 +41,7 @@ public class FlagCommandStorage : IFlagCommandStorage
         throw new NotImplementedException();
     }
 
-    public int ExecuteDelete(Guid id)
+    public int ExecuteDelete(IEnumerable<Guid> id)
     {
         throw new NotImplementedException();
     }

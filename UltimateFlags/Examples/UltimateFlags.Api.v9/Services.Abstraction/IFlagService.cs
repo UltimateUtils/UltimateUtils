@@ -29,11 +29,11 @@ public interface IFlagService
 
     public int ExecuteUpdate(Guid id, FlagUpdateRequest contract);
 
-    public FlagResponse Delete(Guid id);
+    public IEnumerable<FlagResponse> Delete(Guid id);
 
     public int ExecuteDelete(Guid id);
 
-    public FlagResponse Purge(Guid id);
+    public IEnumerable<FlagResponse> Purge(Guid id);
 
     public int ExecutePurge(Guid id);
 

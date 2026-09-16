@@ -115,17 +115,17 @@ public interface IFlagService
     public int ExecuteUpdate(Guid id, FlagUpdateRequest contract);
 
     /// <summary>
-    ///     Soft-Deletes a FLAG by ID.
+    ///     Soft-Deletes a FLAG by ID and its descendants recursively.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <returns>Response contract of deleted FLAG</returns>
+    /// <returns>Response contracts of deleted FLAGs</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
-    public FlagResponse Delete(Guid id);
+    public IEnumerable<FlagResponse> Delete(Guid id);
 
     /// <summary>
-    ///     Soft-Deletes a FLAG.
+    ///     Soft-Deletes a FLAG and its descendants recursively.
     /// </summary>
     /// <param name="id">ID</param>
     /// <returns>Number of deleted FLAGs</returns>
@@ -135,23 +135,23 @@ public interface IFlagService
     public int ExecuteDelete(Guid id);
 
     /// <summary>
-    ///     Purge/Hard-Deletes a FLAG
+    ///     Purge/Hard-Deletes a FLAG and its descendants recursively.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <returns>Contract of purged/hard-deleted flag.</returns>
+    /// <returns>Contracts of purged/hard-deleted flags.</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
     /// <exception cref="FlagNotDeleted">
     ///     FlagNotDeleted will be thrown when the FLAG is not soft-deleted.
     /// </exception>
-    public FlagResponse Purge(Guid id);
+    public IEnumerable<FlagResponse> Purge(Guid id);
 
     /// <summary>
-    ///     Purge/Hard-Deletes a FLAG
+    ///     Purge/Hard-Deletes a FLAG and its descendants recursively.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <returns>Number of purged/hard-deleted flags. 1 if successful. 0 Otherwise.</returns>
+    /// <returns>Number of purged/hard-deleted flags.</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
@@ -161,7 +161,7 @@ public interface IFlagService
     public int ExecutePurge(Guid id);
 
     /// <summary>
-    ///     Purge/Hard-Deletes FLAGs
+    ///     Purge/Hard-Deletes FLAGs and their descendants recursively.
     /// </summary>
     /// <param name="fromInclusive">Deleted after (inclusive) the specified time. No limit if NULL.</param>
     /// <param name="toInclusive">Deleted before (inclusive) the specified time. No limit if NULL.</param>

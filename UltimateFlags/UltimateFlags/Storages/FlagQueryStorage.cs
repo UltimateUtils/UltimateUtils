@@ -16,6 +16,11 @@ public class FlagQueryStorage : IFlagQueryStorage
         throw new NotImplementedException();
     }
 
+    public IQueryable<Flag> ReadAll(Guid? parentId, bool? deleted)
+    {
+        throw new NotImplementedException();
+    }
+
     public IPagedList<Flag> List(string? searchString, bool? isOn, int pageNumber, int pageSize)
     {
         throw new NotImplementedException();

@@ -117,70 +117,129 @@ internal class FlagManager : IFlagManager
         };
     }
 
-    public Flag Delete(Guid id)
+    public IEnumerable<Flag> Delete(Guid id)
     {
-        Flag entity =
-            _flagCommandStorage.Get(id)
+        // todo - improve
+        Flag flagToDelete =
+            _flagQueryStorage.Read(id)
             ?? throw new FlagNotFound
             {
                 Area = $"{nameof(FlagManager)}.{nameof(Delete)}(id)",
             };
 
-        return _flagCommandStorage.Delete(entity.Deleted());
+        List<Flag> deletedFlags = [];
+        Queue<Flag> flagsToDelete = new();
+
+        flagsToDelete.Enqueue(flagToDelete);
+
+        while (flagsToDelete.Count > 0)
+        {
+            Flag curr = flagsToDelete.Dequeue();
+            Flag deleted = _flagCommandStorage.Delete(curr);
+
+            deletedFlags.Add(deleted);
+
+            IEnumerable<Flag> nextGeneration = _flagQueryStorage.ReadAll(parentId: deleted.Id);
+
+            // todo - improve with PushRange()
+            foreach (Flag flag in nextGeneration)
+            {
+                flagsToDelete.Enqueue(flag);
+            }
+        }
+
+        return deletedFlags;
     }
 
     public int ExecuteDelete(Guid id)
     {
-        if (!_flagQueryStorage.Exists(id))
-        {
-            throw new FlagNotFound
-            {
-                Area = $"{nameof(FlagManager)}.{nameof(ExecuteDelete)}(id)",
-            };
-        }
+        IEnumerable<Guid> idsToDelete = _getAllDescendantIds(id);
+        return _flagCommandStorage.ExecuteDelete(idsToDelete);
 
-        return _flagCommandStorage.ExecuteDelete(id);
+        IEnumerable<Guid> _getAllDescendantIds(Guid rootId)
+        {
+            if (!_flagQueryStorage.Exists(rootId))
+            {
+                throw new FlagNotFound
+                {
+                    Area = $"{nameof(FlagManager)}.{nameof(Delete)}(id)",
+                };
+            }
+
+            yield return rootId;
+
+            List<Guid> frontier = [rootId];
+            while (frontier.Count > 0)
+            {
+                List<Guid> nextGeneration = [];
+
+                foreach (Guid parentId in frontier)
+                {
+                    Guid[] ids = [.. _flagQueryStorage.ReadAll(parentId).Select(f => f.Id)];
+                    nextGeneration.AddRange(ids);
+
+                    foreach (Guid guid in ids)
+                    {
+                        yield return guid;
+                    }
+                }
+
+                frontier = nextGeneration;
+            }
+        }
     }
 
-    public Flag Purge(Guid id)
+    public IEnumerable<Flag> Purge(Guid id)
     {
-        Flag? flag = _flagCommandStorage.Get(id, deleted: true);
+        // todo - cascade delete logic here
 
-        if (flag is null)
-        {
-            throw new FlagNotFound
-            {
-                Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
-            };
-        }
+        // Flag? flag = _flagCommandStorage.Get(id, deleted: true);
+        //
+        // if (flag is null)
+        // {
+        //     throw new FlagNotFound
+        //     {
+        //         Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
+        //     };
+        // }
+        //
+        // return _flagCommandStorage.Purge(flag);
 
-        return _flagCommandStorage.Purge(flag);
+        throw new NotImplementedException();
     }
 
     public int ExecutePurge(Guid id)
     {
-        if (!_flagQueryStorage.Exists(id, deleted: null))
-        {
-            throw new FlagNotFound
-            {
-                Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
-            };
-        }
+        // todo - cascade delete logic here
 
-        int purgedCount = _flagCommandStorage.ExecutePurge(id);
+        // if (!_flagQueryStorage.Exists(id, deleted: null))
+        // {
+        //     throw new FlagNotFound
+        //     {
+        //         Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
+        //     };
+        // }
+        //
+        // int purgedCount = _flagCommandStorage.ExecutePurge(id);
+        //
+        // if (purgedCount == 1)
+        //     return purgedCount;
+        //
+        // throw new FlagNotDeleted
+        // {
+        //     Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
+        // };
 
-        if (purgedCount == 1)
-            return purgedCount;
-
-        throw new FlagNotDeleted
-        {
-            Area = $"{nameof(FlagManager)}.{nameof(ExecutePurge)}(id)",
-        };
+        throw new NotImplementedException();
     }
 
     public int ExecutePurge(DateTime? fromInclusive = null, DateTime? toInclusive = null)
     {
-        return _flagCommandStorage.ExecutePurge(fromInclusive, toInclusive);
+        // todo - cascade delete logic here
+
+        // return _flagCommandStorage.ExecutePurge(fromInclusive, toInclusive);
+
+        throw new NotImplementedException();
     }
 
     public bool Exists(

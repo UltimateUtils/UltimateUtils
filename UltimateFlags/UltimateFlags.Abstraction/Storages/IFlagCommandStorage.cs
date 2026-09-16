@@ -30,6 +30,14 @@ public interface IFlagCommandStorage
     public Flag? Get(string name, Guid? parentId);
 
     /// <summary>
+    ///     Retrieves children of the specified FLAG.
+    /// </summary>
+    /// <param name="parentId">ParentID</param>
+    /// <param name="deleted">Checks both deleted and undeleted flags if null</param>
+    /// <returns>Children of the specified FLAG</returns>
+    public IEnumerable<Flag> GetAll(Guid? parentId, bool? deleted = false);
+
+    /// <summary>
     ///     Creates a FLAG.
     /// </summary>
     /// <param name="flag">An entity of the FLAG</param>
@@ -61,9 +69,9 @@ public interface IFlagCommandStorage
     /// <summary>
     ///     Soft-deletes a FLAG by ID.
     /// </summary>
-    /// <param name="id">ID</param>
-    /// <returns>Number of deleted FLAGs. 1 if successful, 0 otherwise.</returns>
-    public int ExecuteDelete(Guid id);
+    /// <param name="ids">IDs</param>
+    /// <returns>Number of deleted FLAGs.</returns>
+    public int ExecuteDelete(IEnumerable<Guid> ids);
 
     /// <summary>
     ///     Purges/Hard-deletes a FLAG.
