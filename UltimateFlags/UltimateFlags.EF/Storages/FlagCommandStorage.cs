@@ -115,7 +115,6 @@ public class FlagCommandStorage : IFlagCommandStorage
 
     public int ExecutePurge(Guid id)
     {
-        // todo - hierarchy
         return
             _flagDbContext
                 .Flags
@@ -127,7 +126,6 @@ public class FlagCommandStorage : IFlagCommandStorage
 
     public int ExecutePurge(DateTime? fromInclusive, DateTime? toInclusive)
     {
-        // todo - hierarchy
         return
             _flagDbContext
                 .Flags

@@ -160,48 +160,38 @@ public class FlagService : IFlagService
         return _flagManager.ExecuteUpdate(id, contract);
     }
 
-    public FlagResponse Delete(Guid id)
+    public IEnumerable<FlagResponse> Delete(Guid id)
     {
-        // todo - cascade delete through hierarchy
-
-        Flag deleteEntity = _flagManager.Delete(id);
+        IEnumerable<Flag> deleteEntities = _flagManager.Delete(id);
 
         return
             _flagManager.SaveChanges() > 0
-                ? deleteEntity.ToContract()
+                ? deleteEntities.ToContracts()
                 : throw new FlagDeletionFailed { Area = $"{nameof(FlagService)}.{nameof(Delete)}(id)", };
     }
 
     public int ExecuteDelete(Guid id)
     {
-        // todo - cascade delete through hierarchy
-
         return _flagManager.ExecuteDelete(id);
     }
 
-    public FlagResponse Purge(Guid id)
+    public IEnumerable<FlagResponse> Purge(Guid id)
     {
-        // todo - cascade delete through hierarchy
-
-        Flag purgedEntity = _flagManager.Purge(id);
+        IEnumerable<Flag> purgedEntity = _flagManager.Purge(id);
 
         return
             _flagManager.SaveChanges() > 0
-                ? purgedEntity.ToContract()
+                ? purgedEntity.ToContracts()
                 : throw new FlagPurgeFailed { Area = $"{nameof(FlagService)}.{nameof(Purge)}(id)", };
     }
 
     public int ExecutePurge(Guid id)
     {
-        // todo - cascade delete through hierarchy
-
         return _flagManager.ExecutePurge(id);
     }
 
     public int ExecutePurge(DateTime? fromInclusive = null, DateTime? toInclusive = null)
     {
-        // todo - cascade delete through hierarchy
-
         _validateTimeRange();
 
         return _flagManager.ExecutePurge(fromInclusive, toInclusive);

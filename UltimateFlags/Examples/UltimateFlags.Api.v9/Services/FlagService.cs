@@ -76,7 +76,7 @@ public class FlagService : IFlagService
         return _flagService.ExecuteUpdate(id, contract);
     }
 
-    public FlagResponse Delete(Guid id)
+    public IEnumerable<FlagResponse> Delete(Guid id)
     {
         return _flagService.Delete(id);
     }
@@ -86,7 +86,7 @@ public class FlagService : IFlagService
         return _flagService.ExecuteDelete(id);
     }
 
-    public FlagResponse Purge(Guid id)
+    public IEnumerable<FlagResponse> Purge(Guid id)
     {
         return _flagService.Purge(id);
     }
