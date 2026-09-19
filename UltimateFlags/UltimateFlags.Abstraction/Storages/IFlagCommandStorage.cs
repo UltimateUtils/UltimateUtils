@@ -83,17 +83,9 @@ public interface IFlagCommandStorage
     /// <summary>
     ///     Purges/Hard-deletes a FLAG by ID.
     /// </summary>
-    /// <param name="id">ID</param>
+    /// <param name="ids">ID</param>
     /// <returns>Number of purged/hard-deleted flags. 1 if successful. 0 otherwise.</returns>
-    public int ExecutePurge(Guid id);
-
-    /// <summary>
-    ///     Purges/Hard-deletes FLAGs.
-    /// </summary>
-    /// <param name="fromInclusive">Deleted after (inclusive) the specified time. No limit if NULL.</param>
-    /// <param name="toInclusive">Deleted before (inclusive) the specified time. No limit if NULL.</param>
-    /// <returns>Number of purged/hard-deleted flags.</returns>
-    public int ExecutePurge(DateTime? fromInclusive, DateTime? toInclusive);
+    public int ExecutePurge(IEnumerable<Guid> ids);
 
     /// <summary>
     ///     Enables a FLAG by ID.

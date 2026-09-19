@@ -38,6 +38,14 @@ public interface IFlagQueryStorage
     public IQueryable<Flag> ReadAll(Guid? parentId, bool? deleted = false);
 
     /// <summary>
+    ///     Retrieves deleted flags by their deleted time.
+    /// </summary>
+    /// <param name="fromInclusive">FROM deleted time (inclusive)</param>
+    /// <param name="toInclusive">TO deleted time (inclusive)</param>
+    /// <returns></returns>
+    public IQueryable<Flag> ReadAllDeleted(DateTime? fromInclusive, DateTime? toInclusive);
+
+    /// <summary>
     ///     Searches and retrieves FLAGs.
     /// </summary>
     /// <remarks>

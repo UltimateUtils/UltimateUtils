@@ -51,12 +51,7 @@ public class FlagCommandStorage : IFlagCommandStorage
         throw new NotImplementedException();
     }
 
-    public int ExecutePurge(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int ExecutePurge(DateTime? fromInclusive, DateTime? toInclusive)
+    public int ExecutePurge(IEnumerable<Guid> ids)
     {
         throw new NotImplementedException();
     }

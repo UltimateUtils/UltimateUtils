@@ -75,6 +75,19 @@ public class FlagQueryStorage : IFlagQueryStorage
                         .Where(flag => flag.ParentId == parentId);
     }
 
+    public IQueryable<Flag> ReadAllDeleted(DateTime? fromInclusive, DateTime? toInclusive)
+    {
+        return
+            _flagDbContext
+                .Flags
+                .AsNoTracking()
+                .Where(
+                    flag =>
+                        flag.DeletedAt.HasValue
+                        && (fromInclusive == null || flag.DeletedAt.Value >= fromInclusive)
+                        && (toInclusive == null || flag.DeletedAt.Value <= toInclusive));
+    }
+
     public IPagedList<Flag> List(string? searchString, bool? isOn, int pageNumber, int pageSize)
     {
         return

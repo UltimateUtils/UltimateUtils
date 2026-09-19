@@ -21,6 +21,11 @@ public class FlagQueryStorage : IFlagQueryStorage
         throw new NotImplementedException();
     }
 
+    public IQueryable<Flag> ReadAllDeleted(DateTime? fromInclusive, DateTime? toInclusive)
+    {
+        throw new NotImplementedException();
+    }
+
     public IPagedList<Flag> List(string? searchString, bool? isOn, int pageNumber, int pageSize)
     {
         throw new NotImplementedException();

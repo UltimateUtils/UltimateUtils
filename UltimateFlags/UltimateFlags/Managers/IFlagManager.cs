@@ -24,11 +24,11 @@ public interface IFlagManager
 
     public int ExecuteUpdate(Guid id, FlagUpdateRequest contract);
 
-    public IEnumerable<Flag> Delete(Guid id);
+    public List<Flag> Delete(Guid id);
 
     public int ExecuteDelete(Guid id);
 
-    public IEnumerable<Flag> Purge(Guid id);
+    public List<Flag> Purge(Guid id);
 
     public int ExecutePurge(Guid id);
 

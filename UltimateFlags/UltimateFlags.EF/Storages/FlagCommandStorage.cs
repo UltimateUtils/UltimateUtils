@@ -128,28 +128,14 @@ public class FlagCommandStorage : IFlagCommandStorage
         return hardDeleted.Entity;
     }
 
-    public int ExecutePurge(Guid id)
+    public int ExecutePurge(IEnumerable<Guid> ids)
     {
         return
             _flagDbContext
                 .Flags
                 .AsNoTracking()
                 .IgnoreQueryFilters()
-                .Where(f => f.Id == id && f.DeletedAt.HasValue)
-                .ExecuteDelete();
-    }
-
-    public int ExecutePurge(DateTime? fromInclusive, DateTime? toInclusive)
-    {
-        return
-            _flagDbContext
-                .Flags
-                .IgnoreQueryFilters()
-                .Where(
-                    f =>
-                        f.DeletedAt.HasValue
-                        && (fromInclusive == null || f.DeletedAt.Value >= fromInclusive.Value)
-                        && (toInclusive == null || f.DeletedAt.Value <= toInclusive.Value))
+                .Where(f => ids.Contains(f.Id) && f.DeletedAt.HasValue)
                 .ExecuteDelete();
     }
 
