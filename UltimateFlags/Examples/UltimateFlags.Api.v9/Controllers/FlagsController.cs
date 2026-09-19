@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UltimateFlags.Abstraction.Contracts;
-using UltimateFlags.Api.v9.Services.Abstraction;
+using UltimateFlags.Abstraction.Services;
 using UltimatePagination.Abstraction;
 
 namespace UltimateFlags.Api.v9.Controllers;
@@ -13,40 +13,44 @@ public class FlagsController : ControllerBase
 
     private readonly IFlagService _flagService;
 
+    private readonly IFlagManagementService _flagManagementService;
+
     public FlagsController(
         ILogger<FlagsController> logger,
-        IFlagService flagService)
+        IFlagService flagService,
+        IFlagManagementService flagManagementService)
     {
         _logger = logger;
         _flagService = flagService;
+        _flagManagementService = flagManagementService;
     }
 
     [HttpPost]
     [Route("")]
     public FlagResponse Create(FlagCreationRequest contract)
     {
-        return _flagService.Create(contract);
+        return _flagManagementService.Create(contract);
     }
 
     [HttpGet]
     [Route("{id:guid}")]
     public FlagResponse GetById([FromRoute] Guid id)
     {
-        return _flagService.GetRequired(id);
+        return _flagManagementService.GetRequired(id);
     }
 
     [HttpGet]
     [Route("")]
     public FlagResponse Get([FromQuery] string name, [FromQuery] Guid? parentId)
     {
-        return _flagService.GetRequired(name, parentId);
+        return _flagManagementService.GetRequired(name, parentId);
     }
 
     [HttpGet]
     [Route("{key}")]
     public FlagResponse Get([FromRoute] string key)
     {
-        return _flagService.GetRequired(key);
+        return _flagManagementService.GetRequired(key);
     }
 
     [HttpGet]
@@ -58,7 +62,7 @@ public class FlagsController : ControllerBase
         [FromQuery] int pageSize = 20)
     {
         return
-            _flagService
+            _flagManagementService
                 .List(
                     searchString,
                     isOn,
@@ -70,14 +74,14 @@ public class FlagsController : ControllerBase
     [Route("{id:guid}")]
     public FlagResponse Update([FromRoute] Guid id, [FromBody] FlagUpdateRequest contract)
     {
-        return _flagService.Update(id, contract);
+        return _flagManagementService.Update(id, contract);
     }
 
     [HttpPut]
     [Route("execute-update/{id:guid}")]
     public int ExecuteUpdate([FromRoute] Guid id, [FromBody] FlagUpdateRequest contract)
     {
-        return _flagService.ExecuteUpdate(id, contract);
+        return _flagManagementService.ExecuteUpdate(id, contract);
     }
 
     [HttpDelete]
@@ -86,8 +90,8 @@ public class FlagsController : ControllerBase
     {
         return
             purge
-                ? _flagService.Purge(id)
-                : _flagService.Delete(id);
+                ? _flagManagementService.Purge(id)
+                : _flagManagementService.Delete(id);
     }
 
     [HttpDelete]
@@ -96,43 +100,43 @@ public class FlagsController : ControllerBase
     {
         return
             purge
-                ? _flagService.ExecutePurge(id)
-                : _flagService.ExecuteDelete(id);
+                ? _flagManagementService.ExecutePurge(id)
+                : _flagManagementService.ExecuteDelete(id);
     }
 
     [HttpDelete]
     [Route("execute-purge")]
     public int ExecutePurge([FromQuery] DateTime? from, [FromQuery] DateTime? to)
     {
-        return _flagService.ExecutePurge(from, to);
+        return _flagManagementService.ExecutePurge(from, to);
     }
 
     [HttpPut]
     [Route("{id:guid}/enable")]
     public void EnableById([FromRoute] Guid id)
     {
-        _flagService.Enable(id);
+        _flagManagementService.Enable(id);
     }
 
     [HttpPut]
     [Route("enable")]
     public void EnableByName([FromQuery] string name, [FromQuery] Guid? parentId)
     {
-        _flagService.Enable(name, parentId);
+        _flagManagementService.Enable(name, parentId);
     }
 
     [HttpPut]
     [Route("{id:guid}/disable")]
     public void DisableById([FromRoute] Guid id)
     {
-        _flagService.Disable(id);
+        _flagManagementService.Disable(id);
     }
 
     [HttpPut]
     [Route("disable")]
     public void DisableByName([FromQuery] string name, [FromQuery] Guid? parentId)
     {
-        _flagService.Disable(name, parentId);
+        _flagManagementService.Disable(name, parentId);
     }
 
     [HttpGet]

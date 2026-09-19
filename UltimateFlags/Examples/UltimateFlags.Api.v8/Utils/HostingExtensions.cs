@@ -55,8 +55,6 @@ internal static class HostingExtensions
         services.Configure<ServiceConfiguration>(configuration.GetRequiredSection(ServiceConfiguration.SectionName));
 
         services.AddTransient<IHealthCheckService, HealthCheckService>();
-        services.AddTransient<IFlagService, FlagService>();
-        services.AddTransient<UltimateFlags.Abstraction.Services.IFlagService, UltimateFlags.Services.FlagService>();
         services.AddUltimateFlags<MyFlagDbContext>(
             configuration,
             options => options.UseSqlite("name=ConnectionStrings:MyFlagsDb"));
