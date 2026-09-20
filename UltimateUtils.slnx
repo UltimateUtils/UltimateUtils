@@ -32,6 +32,4 @@
     <Project Path="UltimateUtils/UltimateUtils.EF/UltimateUtils.EF.csproj" />
     <Project Path="UltimateUtils/UltimateUtils/UltimateUtils.csproj" />
   </Folder>
-  <Project Path="HelloUltimateUtils.API/HelloUltimateUtils.API.csproj" />
-  <Project Path="HelloUltimateUtils/HelloUltimateUtils.csproj" />
 </Solution>
