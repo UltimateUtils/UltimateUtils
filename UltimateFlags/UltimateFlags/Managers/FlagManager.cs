@@ -53,7 +53,7 @@ internal class FlagManager : IFlagManager
 
         foreach (string name in names)
         {
-            // todo - improve - projection
+            // todo - improve - projection - maybe with ReadId(name, parentId)
             currentFlag = _flagQueryStorage.Read(name, parentId);
 
             if (currentFlag is null)
@@ -94,7 +94,7 @@ internal class FlagManager : IFlagManager
                 Area = $"{nameof(FlagManager)}.{nameof(Update)}(id, contract)",
             };
 
-        return _flagCommandStorage.Update(entity.UpdateFrom(contract));
+        return _flagCommandStorage.Update(entity.UpdatedFrom(contract));
     }
 
     public int ExecuteUpdate(Guid id, FlagUpdateRequest contract)
@@ -150,6 +150,11 @@ internal class FlagManager : IFlagManager
 
         IEnumerable<Guid> idsToPurge = _GetAllDescendantIds(rootIds, deleted: true);
         return _flagCommandStorage.ExecutePurge(idsToPurge);
+    }
+
+    public bool Exists(Guid id, bool? deleted = false)
+    {
+        return _flagQueryStorage.Exists(id, deleted);
     }
 
     public bool Exists(
@@ -305,27 +310,6 @@ internal class FlagManager : IFlagManager
         return _flagCommandStorage.SaveChanges();
     }
 
-    private IEnumerable<Guid> _GetAllDescendantIds(IEnumerable<Guid> rootIds, bool? deleted)
-    {
-        HashSet<Guid> visited = [];
-
-        foreach (Guid rootId in rootIds)
-        {
-            if (!visited.Add(rootId))
-                continue;
-
-            yield return rootId;
-
-            IEnumerable<Guid> descendentIds = _GetAllDescendantIds(rootId, deleted);
-
-            foreach (Guid descendentId in descendentIds)
-            {
-                visited.Add(descendentId);
-                yield return descendentId;
-            }
-        }
-    }
-
     private IEnumerable<Flag> _Delete(Guid id, bool purge)
     {
         // todo - improve
@@ -356,6 +340,29 @@ internal class FlagManager : IFlagManager
             foreach (Flag nextFlag in nextGeneration)
             {
                 flagsToDelete.Enqueue(nextFlag);
+            }
+        }
+    }
+
+    private IEnumerable<Guid> _GetAllDescendantIds(IEnumerable<Guid> rootIds, bool? deleted)
+    {
+        // todo - test algorithm
+
+        HashSet<Guid> visited = [];
+
+        foreach (Guid rootId in rootIds)
+        {
+            if (!visited.Add(rootId))
+                continue;
+
+            yield return rootId;
+
+            IEnumerable<Guid> descendentIds = _GetAllDescendantIds(rootId, deleted);
+
+            foreach (Guid descendentId in descendentIds)
+            {
+                visited.Add(descendentId);
+                yield return descendentId;
             }
         }
     }

@@ -10,8 +10,6 @@ public enum ClientFaultReason
 
     FlagNotDeleted,
 
-    FlagParentDeleted,
-
     FlagParentNotFound,
 
     PaginationInfoInvalid,

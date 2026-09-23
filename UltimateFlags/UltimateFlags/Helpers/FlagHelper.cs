@@ -5,28 +5,28 @@ namespace UltimateFlags.Helpers;
 
 public static class FlagHelper
 {
-    public static Flag UpdateFrom(this Flag entity, FlagUpdateRequest contract)
+    public static Flag UpdatedFrom(this Flag entity, FlagUpdateRequest updateRequest)
     {
         // todo - make it better
 
         bool updated = false;
 
-        if (contract.Name is not null && entity.Name != contract.Name)
+        if (updateRequest.Name is not null && entity.Name != updateRequest.Name)
         {
             updated = true;
-            entity.Name = contract.Name;
+            entity.Name = updateRequest.Name;
         }
 
-        if (contract.Description is not null && entity.Description != contract.Description)
+        if (updateRequest.Description is not null && entity.Description != updateRequest.Description)
         {
             updated = true;
-            entity.Description = contract.Description;
+            entity.Description = updateRequest.Description;
         }
 
-        if (contract.IsOn.HasValue && entity.IsOn != contract.IsOn.Value)
+        if (updateRequest.IsOn.HasValue && entity.IsOn != updateRequest.IsOn.Value)
         {
             updated = true;
-            entity.IsOn = contract.IsOn.Value;
+            entity.IsOn = updateRequest.IsOn.Value;
         }
 
         if (updated)

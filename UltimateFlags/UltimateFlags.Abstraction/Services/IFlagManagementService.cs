@@ -9,7 +9,7 @@ public interface IFlagManagementService
     /// <summary>
     ///     Creates a FLAG.
     /// </summary>
-    /// <param name="contract">Request contract of FLAG to create by Name and ParentId</param>
+    /// <param name="creationRequest">Request contract of FLAG to create by Name and ParentId</param>
     /// <returns>Response contract of created FLAG</returns>
     /// <exception cref="FlagDuplicateFound">
     ///     FlagDuplicateFound will be thrown when the FLAG with the same KEY exists.
@@ -17,7 +17,7 @@ public interface IFlagManagementService
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG specified by the ParentId does not exist.
     /// </exception>
-    public FlagResponse Create(FlagCreationRequest contract);
+    public FlagResponse Create(FlagCreationRequest creationRequest);
 
     /// <summary>
     ///     Retrieves a FLAG by the ID.
@@ -96,23 +96,23 @@ public interface IFlagManagementService
     ///     Updates a FLAG by ID. Only name may be updated.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <param name="contract">Request contract of FLAG to update</param>
+    /// <param name="updateRequest">Request contract of FLAG to update</param>
     /// <returns>Response contract of updated FLAG</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
-    public FlagResponse Update(Guid id, FlagUpdateRequest contract);
+    public FlagResponse Update(Guid id, FlagUpdateRequest updateRequest);
 
     /// <summary>
     ///     Updates a FLAG.
     /// </summary>
     /// <param name="id">ID</param>
-    /// <param name="contract">Request contract of FLAG to update</param>
+    /// <param name="updateRequest">Request contract of FLAG to update</param>
     /// <returns>Number of updated FLAGs. 1 if successful. 0 otherwise.</returns>
     /// <exception cref="FlagNotFound">
     ///     FlagNotFound will be thrown when the FLAG with the ID does not exist.
     /// </exception>
-    public int ExecuteUpdate(Guid id, FlagUpdateRequest contract);
+    public int ExecuteUpdate(Guid id, FlagUpdateRequest updateRequest);
 
     /// <summary>
     ///     Soft-Deletes a FLAG by ID and its descendants recursively.
