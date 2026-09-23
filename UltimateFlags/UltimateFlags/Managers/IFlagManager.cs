@@ -34,6 +34,8 @@ public interface IFlagManager
 
     public int ExecutePurge(DateTime? fromInclusive = null, DateTime? toInclusive = null);
 
+    public bool Exists(Guid id, bool? deleted = false);
+
     public bool Exists(string name, Guid? parentId, bool? deleted = false);
 
     public void Enable(Guid id);

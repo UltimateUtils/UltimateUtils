@@ -31,38 +31,23 @@ public class FlagManagementService : IFlagManagementService
         _ultimateFlagConfiguration = options.Value;
     }
 
-    public FlagResponse Create(FlagCreationRequest contract)
+    public FlagResponse Create(FlagCreationRequest creationRequest)
     {
-        if (contract.ParentId is not null)
+        if (creationRequest.ParentId is not null
+            && !_flagManager.Exists(creationRequest.ParentId.Value))
         {
-            // todo - improve - projection
-            Flag? parentFlag = _flagManager.Read(contract.ParentId.Value);
-
-            if (parentFlag is null)
+            throw new FlagParentNotFound
             {
-                throw new FlagParentNotFound
-                {
-                    Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)",
-                };
-            }
-
-            // todo - improve readability with extension method
-            if (parentFlag.DeletedAt is not null)
-            {
-                throw new FlagParentDeleted
-                {
-                    Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)",
-                };
-            }
+                Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)",
+            };
         }
 
-        bool exists = _flagManager.Exists(contract.Name, contract.ParentId, deleted: null);
-        if (exists)
+        if (_flagManager.Exists(creationRequest.Name, creationRequest.ParentId, deleted: null))
         {
             throw new FlagDuplicateFound { Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)", };
         }
 
-        Flag createdEntity = _flagManager.Create(contract.ToEntity());
+        Flag createdEntity = _flagManager.Create(creationRequest.ToEntity());
 
         return _flagManager.SaveChanges() > 0
             ? createdEntity.ToContract()
@@ -145,9 +130,9 @@ public class FlagManagementService : IFlagManagementService
         return foundEntities.Convert(entity => entity.ToContract());
     }
 
-    public FlagResponse Update(Guid id, FlagUpdateRequest contract)
+    public FlagResponse Update(Guid id, FlagUpdateRequest updateRequest)
     {
-        Flag updatedEntity = _flagManager.Update(id, contract);
+        Flag updatedEntity = _flagManager.Update(id, updateRequest);
 
         return
             _flagManager.SaveChanges() > 0
@@ -155,18 +140,18 @@ public class FlagManagementService : IFlagManagementService
                 : throw new FlagUpdateFailed { Area = $"{nameof(FlagService)}.{nameof(Update)}(id, contract)", };
     }
 
-    public int ExecuteUpdate(Guid id, FlagUpdateRequest contract)
+    public int ExecuteUpdate(Guid id, FlagUpdateRequest updateRequest)
     {
-        return _flagManager.ExecuteUpdate(id, contract);
+        return _flagManager.ExecuteUpdate(id, updateRequest);
     }
 
     public IEnumerable<FlagResponse> Delete(Guid id)
     {
-        IEnumerable<Flag> deleteEntities = _flagManager.Delete(id);
+        IEnumerable<Flag> deletedEntities = _flagManager.Delete(id);
 
         return
             _flagManager.SaveChanges() > 0
-                ? deleteEntities.ToContracts()
+                ? deletedEntities.ToContracts()
                 : throw new FlagDeletionFailed { Area = $"{nameof(FlagService)}.{nameof(Delete)}(id)", };
     }
 

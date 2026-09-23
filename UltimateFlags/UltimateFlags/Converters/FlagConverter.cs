@@ -5,7 +5,7 @@ namespace UltimateFlags.Converters;
 
 internal static class FlagConverter
 {
-    internal static Flag ToEntity(this FlagCreationRequest contract)
+    internal static Flag ToEntity(this FlagCreationRequest creationRequest)
     {
         DateTime utcNow = DateTime.UtcNow;
 
@@ -13,10 +13,10 @@ internal static class FlagConverter
             new Flag
             {
                 Id = Guid.NewGuid(),
-                Name = contract.Name,
-                ParentId = contract.ParentId,
-                IsOn = contract.IsOn,
-                Description = contract.Description,
+                Name = creationRequest.Name,
+                ParentId = creationRequest.ParentId,
+                IsOn = creationRequest.IsOn,
+                Description = creationRequest.Description,
                 CreatedAt = utcNow,
                 UpdatedAt = utcNow,
                 DeletedAt = null,
