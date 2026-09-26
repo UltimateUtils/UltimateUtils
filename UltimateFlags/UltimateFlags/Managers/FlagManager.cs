@@ -291,20 +291,6 @@ internal class FlagManager : IFlagManager
         return currentFlag?.IsOn ?? false;
     }
 
-    public bool IsOn(string name, Guid? parentId)
-    {
-        // todo - improve - projection
-
-        Flag entity =
-            _flagQueryStorage.Read(name, parentId)
-            ?? throw new FlagNotFound
-            {
-                Area = $"{nameof(FlagManager)}.{nameof(IsOn)}(name, parentId)",
-            };
-
-        return entity.IsOn;
-    }
-
     public int SaveChanges()
     {
         return _flagCommandStorage.SaveChanges();
