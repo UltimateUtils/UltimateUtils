@@ -125,7 +125,7 @@ internal class FlagManager : IFlagManager
 
     public int ExecuteDelete(Guid id)
     {
-        IEnumerable<Guid> idsToDelete = _GetAllDescendantIds([id], deleted: false);
+        IEnumerable<Guid> idsToDelete = _GetAllDescendantIds(id, deleted: false);
         return _flagCommandStorage.ExecuteDelete(idsToDelete);
     }
 
@@ -137,7 +137,7 @@ internal class FlagManager : IFlagManager
 
     public int ExecutePurge(Guid id)
     {
-        IEnumerable<Guid> idsToPurge = _GetAllDescendantIds([id], deleted: true);
+        IEnumerable<Guid> idsToPurge = _GetAllDescendantIds(id, deleted: true);
         return _flagCommandStorage.ExecutePurge(idsToPurge);
     }
 
@@ -355,14 +355,12 @@ internal class FlagManager : IFlagManager
             if (!visited.Add(rootId))
                 continue;
 
-            yield return rootId;
-
             IEnumerable<Guid> descendentIds = _GetAllDescendantIds(rootId, deleted);
 
             foreach (Guid descendentId in descendentIds)
             {
-                visited.Add(descendentId);
-                yield return descendentId;
+                if (visited.Add(descendentId))
+                    yield return descendentId;
             }
         }
     }
