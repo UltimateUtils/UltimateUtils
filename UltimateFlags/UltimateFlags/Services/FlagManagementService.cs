@@ -5,9 +5,9 @@ using UltimateFlags.Abstraction.Contracts;
 using UltimateFlags.Abstraction.Entities;
 using UltimateFlags.Abstraction.Exceptions.ClientFaults;
 using UltimateFlags.Abstraction.Exceptions.ServerFaults;
+using UltimateFlags.Abstraction.Managers;
 using UltimateFlags.Abstraction.Services;
 using UltimateFlags.Converters;
-using UltimateFlags.Managers;
 using UltimatePagination;
 using UltimatePagination.Abstraction;
 

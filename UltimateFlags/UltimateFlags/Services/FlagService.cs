@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using UltimateFlags.Abstraction.Config;
+using UltimateFlags.Abstraction.Managers;
 using UltimateFlags.Abstraction.Services;
-using UltimateFlags.Managers;
 
 namespace UltimateFlags.Services;
 

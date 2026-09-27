@@ -2,7 +2,7 @@ using UltimateFlags.Abstraction.Contracts;
 using UltimateFlags.Abstraction.Entities;
 using UltimatePagination.Abstraction;
 
-namespace UltimateFlags.Managers;
+namespace UltimateFlags.Abstraction.Managers;
 
 public interface IFlagManager
 {
