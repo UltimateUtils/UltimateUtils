@@ -33,25 +33,38 @@ public class FlagManagementService : IFlagManagementService
 
     public FlagResponse Create(FlagCreationRequest creationRequest)
     {
-        if (creationRequest.ParentId is not null
-            && !_flagManager.Exists(creationRequest.ParentId.Value))
-        {
-            throw new FlagParentNotFound
-            {
-                Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)",
-            };
-        }
+        string parentKey = _getParentKey(creationRequest.ParentId);
 
         if (_flagManager.Exists(creationRequest.Name, creationRequest.ParentId, deleted: null))
         {
             throw new FlagDuplicateFound { Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)", };
         }
 
-        Flag createdEntity = _flagManager.Create(creationRequest.ToEntity());
+        Flag createdEntity = _flagManager.Create(creationRequest.ToEntity(parentKey));
 
         return _flagManager.SaveChanges() > 0
             ? createdEntity.ToContract()
             : throw new FlagCreationFailed { Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)", };
+
+        string _getParentKey(Guid? parentId)
+        {
+            if (parentId is null)
+            {
+                return string.Empty;
+            }
+
+            // todo - improve - projection
+            Flag? parent = _flagManager.Read(parentId.Value);
+            if (parent == null)
+            {
+                throw new FlagParentNotFound
+                {
+                    Area = $"{nameof(FlagService)}.{nameof(Create)}(contract)",
+                };
+            }
+
+            return parent.Key;
+        }
     }
 
     public FlagResponse? Get(Guid id)

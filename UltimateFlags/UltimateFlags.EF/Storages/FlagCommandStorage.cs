@@ -94,8 +94,7 @@ public class FlagCommandStorage : IFlagCommandStorage
                 .ExecuteUpdate(
                     setters =>
                         setters
-                            .SetProperty(f => f.Name, f => contract.Name ?? f.Name)
-                            .SetProperty(f => f.Description, f => contract.Description ?? f.Description) // todo - null로 업데이트하고 싶다면?
+                            .SetProperty(f => f.Description, f => contract.Description ?? f.Description)
                             .SetProperty(f => f.IsOn, f => contract.IsOn ?? f.IsOn));
     }
 

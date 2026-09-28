@@ -7,20 +7,20 @@ public static class FlagHelper
 {
     public static Flag UpdatedFrom(this Flag entity, FlagUpdateRequest updateRequest)
     {
-        // todo - make it better
-
         bool updated = false;
 
-        if (updateRequest.Name is not null && entity.Name != updateRequest.Name)
+        if (updateRequest.Description is not null)
         {
-            updated = true;
-            entity.Name = updateRequest.Name;
-        }
+            string? description =
+                updateRequest.Description == string.Empty
+                    ? null
+                    : updateRequest.Description;
 
-        if (updateRequest.Description is not null && entity.Description != updateRequest.Description)
-        {
-            updated = true;
-            entity.Description = updateRequest.Description;
+            if (entity.Description != description)
+            {
+                updated = true;
+                entity.Description = description;
+            }
         }
 
         if (updateRequest.IsOn.HasValue && entity.IsOn != updateRequest.IsOn.Value)
