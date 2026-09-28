@@ -45,6 +45,12 @@ public interface IFlagQueryStorage
     /// <returns></returns>
     public IQueryable<Flag> ReadAllDeleted(DateTime? fromInclusive, DateTime? toInclusive);
 
+    public IQueryable<Flag> ReadAllAncestors(Guid id);
+
+    public IQueryable<Flag> ReadAllAncestors(string key);
+
+    public IQueryable<Flag> ReadAllAncestors(string name, Guid? parentId);
+
     /// <summary>
     ///     Searches and retrieves FLAGs.
     /// </summary>

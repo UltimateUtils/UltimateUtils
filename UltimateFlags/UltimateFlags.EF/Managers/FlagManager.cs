@@ -272,7 +272,7 @@ public class FlagManager : IFlagManager
         return entity.IsOn;
     }
 
-    public bool IsOn(string key)
+    public virtual bool IsOn(string key)
     {
         string[] names = key.Split(Constants.KeyDelimiter);
 

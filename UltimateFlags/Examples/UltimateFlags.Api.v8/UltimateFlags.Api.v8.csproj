@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\UltimateFlags.EF\UltimateFlags.EF.csproj"/>
+      <ProjectReference Include="..\..\UltimateFlags.EF.Relational\UltimateFlags.EF.Relational.csproj" />
     </ItemGroup>
-
 </Project>

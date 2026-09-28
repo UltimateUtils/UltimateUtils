@@ -3,7 +3,9 @@ using UltimateFlags.Api.v8.Config;
 using UltimateFlags.Api.v8.Db;
 using UltimateFlags.Api.v8.Services;
 using UltimateFlags.Api.v8.Services.Abstraction;
-using UltimateFlags.EF.DI;
+using UltimateFlags.EF.Relational.DI;
+
+// using UltimateFlags.EF.DI;
 
 namespace UltimateFlags.Api.v8.Utils;
 
