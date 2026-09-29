@@ -4,21 +4,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UltimateFlags.Api.v9.Db;
+using UltimateFlags.Api.v10.Db;
 
 #nullable disable
 
-namespace UltimateFlags.Api.v9.Db.Migrations
+namespace UltimateFlags.Api.v10.Db.Migrations
 {
     [DbContext(typeof(MyFlagDbContext))]
-    [Migration("20260914030503_Init")]
+    [Migration("20260929001152_Init")]
     partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.20");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
             modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
                 {
@@ -37,6 +37,10 @@ namespace UltimateFlags.Api.v9.Db.Migrations
 
                     b.Property<bool>("IsOn")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,10 +73,15 @@ namespace UltimateFlags.Api.v9.Db.Migrations
             modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
                 {
                     b.HasOne("UltimateFlags.Abstraction.Entities.Flag", "Parent")
-                        .WithMany()
+                        .WithMany("Children")
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

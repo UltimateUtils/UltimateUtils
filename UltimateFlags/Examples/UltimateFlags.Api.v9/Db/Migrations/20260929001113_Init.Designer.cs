@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UltimateFlags.Api.v8.Db;
+using UltimateFlags.Api.v9.Db;
 
 #nullable disable
 
-namespace UltimateFlags.Api.v8.Db.Migrations
+namespace UltimateFlags.Api.v9.Db.Migrations
 {
     [DbContext(typeof(MyFlagDbContext))]
-    [Migration("20260914031216_Init")]
+    [Migration("20260929001113_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -37,6 +37,10 @@ namespace UltimateFlags.Api.v8.Db.Migrations
 
                     b.Property<bool>("IsOn")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,10 +73,15 @@ namespace UltimateFlags.Api.v8.Db.Migrations
             modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
                 {
                     b.HasOne("UltimateFlags.Abstraction.Entities.Flag", "Parent")
-                        .WithMany()
+                        .WithMany("Children")
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

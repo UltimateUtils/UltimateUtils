@@ -35,6 +35,10 @@ namespace UltimateFlags.Api.v8.Db.Migrations
                     b.Property<bool>("IsOn")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -66,10 +70,15 @@ namespace UltimateFlags.Api.v8.Db.Migrations
             modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
                 {
                     b.HasOne("UltimateFlags.Abstraction.Entities.Flag", "Parent")
-                        .WithMany()
+                        .WithMany("Children")
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("UltimateFlags.Abstraction.Entities.Flag", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }
