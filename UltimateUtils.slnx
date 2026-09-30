@@ -23,11 +23,6 @@
     <Project Path="UltimateFlags/Tests/UltimateFlags.IntegrationTests/UltimateFlags.IntegrationTests.csproj" />
     <Project Path="UltimateFlags/Tests/UltimateFlags.UnitTests/UltimateFlags.UnitTests.csproj" />
   </Folder>
-  <Folder Name="/UltimatePagination/">
-    <Project Path="UltimatePagination/UltimatePagination.Abstraction/UltimatePagination.Abstraction.csproj" />
-    <Project Path="UltimatePagination/UltimatePagination.EF/UltimatePagination.EF.csproj" />
-    <Project Path="UltimatePagination/UltimatePagination/UltimatePagination.csproj" />
-  </Folder>
   <Folder Name="/UltimateUtils/">
     <Project Path="UltimateUtils/UltimateUtils.Abstraction/UltimateUtils.Abstraction.csproj" />
     <Project Path="UltimateUtils/UltimateUtils.EF/UltimateUtils.EF.csproj" />
