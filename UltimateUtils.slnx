@@ -12,12 +12,6 @@
     <Project Path="UltimateFlags/UltimateFlags.EF/UltimateFlags.EF.csproj" />
     <Project Path="UltimateFlags/UltimateFlags/UltimateFlags.csproj" />
   </Folder>
-  <Folder Name="/UltimateFlags/Tests/">
-    <Project Path="UltimateFlags/Tests/UltimateFlags.EF.IntegrationTests/UltimateFlags.EF.IntegrationTests.csproj" />
-    <Project Path="UltimateFlags/Tests/UltimateFlags.EF.UnitTests/UltimateFlags.EF.UnitTests.csproj" />
-    <Project Path="UltimateFlags/Tests/UltimateFlags.IntegrationTests/UltimateFlags.IntegrationTests.csproj" />
-    <Project Path="UltimateFlags/Tests/UltimateFlags.UnitTests/UltimateFlags.UnitTests.csproj" />
-  </Folder>
   <Folder Name="/UltimateUtils/">
     <Project Path="UltimateUtils/UltimateUtils.Abstraction/UltimateUtils.Abstraction.csproj" />
     <Project Path="UltimateUtils/UltimateUtils.EF/UltimateUtils.EF.csproj" />
