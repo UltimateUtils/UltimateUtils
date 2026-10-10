@@ -6,12 +6,6 @@
     <File Path="README.md" />
     <File Path="UltimateUtils.sln.DotSettings" />
   </Folder>
-  <Folder Name="/UltimateFlags/">
-    <Project Path="UltimateFlags/UltimateFlags.Abstraction/UltimateFlags.Abstraction.csproj" />
-    <Project Path="UltimateFlags/UltimateFlags.EF.Relational/UltimateFlags.EF.Relational.csproj" />
-    <Project Path="UltimateFlags/UltimateFlags.EF/UltimateFlags.EF.csproj" />
-    <Project Path="UltimateFlags/UltimateFlags/UltimateFlags.csproj" />
-  </Folder>
   <Folder Name="/UltimateUtils/">
     <Project Path="UltimateUtils/UltimateUtils.Abstraction/UltimateUtils.Abstraction.csproj" />
     <Project Path="UltimateUtils/UltimateUtils.EF/UltimateUtils.EF.csproj" />
